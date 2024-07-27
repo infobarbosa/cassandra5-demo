@@ -1,0 +1,48 @@
+name: infobarbankdb
+services:
+  cassandra1:
+    image: cassandra:latest
+    volumes:
+      - "/var/lib/cassandra/node1:/var/lib/cassandra"
+      - "/var/log/cassandra/node1:/var/log/cassandra"
+    environment:
+      - "CASSANDRA_SEEDS=cassandra1"
+      - "CASSANDRA_CLUSTER_NAME=infobarbankdb"
+      - "CASSANDRA_DC=BRA-SP-OLTP"
+      - "CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch"
+    expose:
+      - 9042
+    ports:
+      - "19042:9042"
+  cassandra2:
+    image: cassandra:latest
+    volumes:
+      - "/var/lib/cassandra/node2:/var/lib/cassandra"
+      - "/var/log/cassandra/node2:/var/log/cassandra"
+    environment:
+      - "CASSANDRA_SEEDS=cassandra1"
+      - "CASSANDRA_CLUSTER_NAME=infobarbankdb"
+      - "CASSANDRA_DC=BRA-SP-OLTP"
+      - "CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch"
+    depends_on:
+      - cassandra1
+    expose:
+      - 9042
+    ports:
+      - "29042:9042"
+  cassandra3:
+    image: cassandra:latest
+    volumes:
+      - "/var/lib/cassandra/node3:/var/lib/cassandra"
+      - "/var/log/cassandra/node3:/var/log/cassandra"
+    environment:
+      - "CASSANDRA_SEEDS=cassandra1"
+      - "CASSANDRA_CLUSTER_NAME=infobarbankdb"
+      - "CASSANDRA_DC=BRA-SP-OLTP"
+      - "CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch"
+    depends_on:
+      - cassandra1
+    expose:
+      - 9042
+    ports:
+      - "39042:9042"
