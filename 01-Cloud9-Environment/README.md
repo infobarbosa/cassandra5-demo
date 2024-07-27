@@ -99,18 +99,6 @@ Ao ser criado, seu ambiente aparece no console do Cloud9
 
 ![img/018_cloud9_ide_aberta.png](img/018_cloud9_ide_aberta.png)
 
-16. Clone do git deste laboratório:
 
-```
-git clone https://github.com/infobarbosa/cassandra-aws.git
-```
-![img/019_cloud9_clone_git.png](img/019_cloud9_clone_git.png)
-
-
-17. Navegue para o diretório raiz do projeto:
-
-```
-cd cassandra-aws/
-```
-
-Parabéns! Seu ambiente Cloud9 está pronto pra uso!
+# Parabéns! 
+Seu ambiente Cloud9 está pronto pra uso!
