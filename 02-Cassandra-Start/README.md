@@ -74,5 +74,12 @@ Caso você queira reiniciar o laboratório em uma instância totalmente nova ou 
 docker compose -f ./02-Cassandra-Start/assets/scripts/compose.yaml down
 ```
 
+Output esperado:
+```
+[+] Running 2/2
+ ✔ Container cassandra5           Removed                                                                                                                                     5.7s
+ ✔ Network infobarbankdb_default  Removed                                                                                                                                     0.5s
+ ```
+
 # Parabéns
 Sua instância Cassandra está pronta pra uso!
