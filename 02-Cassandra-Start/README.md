@@ -30,7 +30,7 @@ docker compose -d -f ./02-Cassandra-Start/assets/scripts/compose.yaml up
 
 Para verificar se está tudo correto:
 ```
-docker compose logs -f
+docker compose -f ./02-Cassandra-Start/assets/scripts/compose.yaml logs -f
 ```
 > Para sair do comando acima, digite `Control+C`
 
