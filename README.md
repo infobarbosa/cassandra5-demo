@@ -16,7 +16,7 @@ O objetivo desse laboratório é oferecer ao aluno ambiente onde de familiariza�
 ## Ambiente
 Este laborarório pode ser executado em qualquer estação de trabalho.<br>
 Recomendo, porém, a execução em sistema operacional Linux.<br>
-Caso você não tenha um à sua disposição, recomendo o uso do AWS Cloud9. Siga essas [instruções](Cloud9/README.md).
+Caso você não tenha um à sua disposição, recomendo o uso do AWS Cloud9. Siga essas [instruções](./01-Cloud9-Environment/README.md).
 
 ## Setup
 Para começar, faça o clone deste repositório:
