@@ -8,14 +8,14 @@ O objetivo desse laboratório é oferecer ao aluno ambiente onde de familiariza�
 
 ## Cassandra
 
-[Cassandra](https://cassandra.apache.org/_/index.html) é um banco de dados altamente escalável com modelo de armazenamento wide-column. <br>
-
+[Cassandra](https://cassandra.apache.org/_/index.html) é um banco de dados distribuído altamente escalável com modelo de armazenamento wide-column. <br>
+O modelo descentralizado do Cassandra fornece escalabilidade massiva e alta disponibilidade sem ponto único de falha, mesmo nos piores cenários.
 
 # Laboratório
 
 ## Ambiente
 Este laborarório pode ser executado em qualquer estação de trabalho.<br>
-Recomendo, porém, a execução em sistema operacional Linux.<br>
+Recomendo, porém, a execução em sistema operacional Linux ou Mac.<br>
 Caso você não tenha um à sua disposição, recomendo o uso do AWS Cloud9. Siga essas [instruções](./01-Cloud9-Environment/README.md).
 
 ## Setup
