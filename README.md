@@ -13,6 +13,59 @@ O modelo descentralizado do Cassandra fornece escalabilidade massiva e alta disp
 
 # Laboratório
 
+Este laboratório é dividido nas seguintes sessões que devem ser seguidas em ordem:
+1. [Cloud9 Environment](./01-Cloud9-Environment)
+2. [Cassandra Start](./02-Cassandra-Start)
+3. [cqlsh](./03-cqlsh)
+4. [Keyspaces](./04-Keyspaces)
+5. [Tables](./05-Tables)
+6. [Datafiles](./06-Datafiles)
+7. [Compaction](./07-Compaction)
+8. [Cassandra Driver](./08-Cassandra-Driver)
+9. [Cassandra Cluster](./09-Cluster)
+
+## Ambiente
+Este laborarório pode ser executado em qualquer estação de trabalho.<br>
+Recomendo, porém, a execução em sistema operacional Linux ou Mac.<br>
+Caso você não tenha um à sua disposição, recomendo o uso do AWS Cloud9. Siga essas [instruções](./01-Cloud9-Environment/README.md).
+
+## Setup
+Para começar, faça o clone deste repositório:
+```
+git clone https://github.com/infobarbosa/cassandra5-demo
+```
+
+No terminal, navegue para o diretório do repositório
+```
+cd cassandra5-demo
+```
+
+## Docker
+Por simplicidade, vamos utilizar o Cassandra em um container baseado em *Docker*.<br>
+Na raiz do projeto está disponível um arquivo `compose.yaml` que contém os parâmetros de inicialização do container Docker.<br>
+Embora não seja escopo deste laboratório o entendimento detalhado do Docker, recomendo o estudo do arquivo `compose.yaml`.
+
+```
+ls -la compose.yaml
+```
+
+Output esperado:
+```
+ls -la compose.yaml
+-rw-r--r-- 1 barbosa barbosa 144 jul 16 23:20 compose.yaml
+```
+
+#### Inicialização
+```
+docker compose up -d
+```
+
+Para verificar se está tudo correto:
+```
+docker compose logs -f
+```
+> Para sair do comando acima, digite `Control+C`
+
 ## Ambiente
 Este laborarório pode ser executado em qualquer estação de trabalho.<br>
 Recomendo, porém, a execução em sistema operacional Linux ou Mac.<br>
