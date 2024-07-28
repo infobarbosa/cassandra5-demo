@@ -35,12 +35,10 @@ DESCRIBE KEYSPACES;
 
 Output:
 ```
-cqlsh> describe KEYSPACES 
+cqlsh> DESCRIBE KEYSPACES;
 
+infobarbank  system_auth         system_schema  system_views
 system       system_distributed  system_traces  system_virtual_schema
-system_auth  system_schema       system_views 
-
-cqlsh> 
 ``` 
 
 ## 2 - Não interativo
@@ -53,12 +51,15 @@ Por exemplo:
 cqlsh -e "describe keyspaces;"
 ```
 
-Output
+Output esperado:
 ```
-ubuntu $ cqlsh -e "describe keyspaces;"
+root@7b6a3d7628b1:/# cqlsh -e "describe keyspaces;"
+WARNING: cqlsh was built against 5.0-beta1, but this server is 5.0.  All features may not work!
 
+infobarbank  system_auth         system_schema  system_views
 system       system_distributed  system_traces  system_virtual_schema
-system_auth  system_schema       system_views 
+
+root@7b6a3d7628b1:/#
 ```
 
 Ou, utilizando `--execute`
@@ -68,10 +69,13 @@ cqlsh --execute "describe keyspaces"
 
 Output:
 ```
-ubuntu $ cqlsh --execute "describe keyspaces"
+root@7b6a3d7628b1:/# cqlsh --execute "describe keyspaces"
+WARNING: cqlsh was built against 5.0-beta1, but this server is 5.0.  All features may not work!
 
+infobarbank  system_auth         system_schema  system_views
 system       system_distributed  system_traces  system_virtual_schema
-system_auth  system_schema       system_views
+
+root@7b6a3d7628b1:/#
 ```
 
 ### Saindo do `cqlsh`
