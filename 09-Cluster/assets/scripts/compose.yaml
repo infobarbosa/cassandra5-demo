@@ -3,9 +3,6 @@ services:
   cassandra1:
     container_name: cassandra1
     image: cassandra:latest
-#    volumes:
-#      - "/var/lib/cassandra/node1:/var/lib/cassandra"
-#      - "/var/log/cassandra/node1:/var/log/cassandra"
     environment:
       - "CASSANDRA_SEEDS=cassandra1"
       - "CASSANDRA_CLUSTER_NAME=infobarbankdb"
@@ -18,9 +15,6 @@ services:
   cassandra2:
     container_name: cassandra2
     image: cassandra:latest
-#    volumes:
-#      - "/var/lib/cassandra/node2:/var/lib/cassandra"
-#      - "/var/log/cassandra/node2:/var/log/cassandra"
     environment:
       - "CASSANDRA_SEEDS=cassandra1"
       - "CASSANDRA_CLUSTER_NAME=infobarbankdb"
@@ -35,9 +29,6 @@ services:
   cassandra3:
     container_name: cassandra3
     image: cassandra:latest
-#    volumes:
-#      - "/var/lib/cassandra/node3:/var/lib/cassandra"
-#      - "/var/log/cassandra/node3:/var/log/cassandra"
     environment:
       - "CASSANDRA_SEEDS=cassandra1"
       - "CASSANDRA_CLUSTER_NAME=infobarbankdb"
