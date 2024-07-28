@@ -139,7 +139,9 @@ cqlsh -e "DROP TABLE infobarbank2.cliente;"
 
 ### JUNÇÕES
 
-Vamos recriar a tabela `cliente` e adicionalmente criar outra tabela `pedido`:
+Vamos recriar a tabela `cliente` e adicionalmente criar outra tabela `pedido`.
+
+##### Criando a tabela `cliente`
 ```
 cqlsh -e "
     CREATE TABLE infobarbank2.cliente(
@@ -153,6 +155,7 @@ cqlsh -e "
 cqlsh -e "DESCRIBE TABLE infobarbank2.cliente;"
 ```
 
+Criando um cliente
 ```
 cqlsh -e "
     INSERT INTO infobarbank2.cliente(id, cpf, nome) 
@@ -189,6 +192,7 @@ cqlsh -e "
 cqlsh -e "DESCRIBE TABLE infobarbank2.pedido;"
 ```
 
+Inserindo um pedido de exemplo:
 ```
 cqlsh -e "
     INSERT INTO infobarbank2.pedido(id, id_cliente, data, valor, endereco, item) 
@@ -210,6 +214,7 @@ cqlsh> select * from infobarbank2.pedido ;
 (1 rows)
 ```
 
+##### A junção
 Agora queremos executar uma consulta que retorne o CPF do cliente e seus pedidos:
 ```
 cqlsh -e "
