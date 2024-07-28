@@ -277,3 +277,10 @@ for cliente in rows:
     print (cliente.nome)
 
 ```
+
+### Encerrando o cluster
+Por comodidade e também restrição de recursos de cpu e memória do nosso laboratório, vamos inicializar um cluster com apenas 2 nós.
+```
+docker compose -f ./09-Cluster/assets/scripts/compose.yaml down
+
+```

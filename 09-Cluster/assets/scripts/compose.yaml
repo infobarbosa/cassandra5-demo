@@ -1,6 +1,7 @@
 name: infobarbankdb
 services:
   cassandra1:
+    container_name: cassandra1
     image: cassandra:latest
     volumes:
       - "/var/lib/cassandra/node1:/var/lib/cassandra"
@@ -15,6 +16,7 @@ services:
     ports:
       - "19042:9042"
   cassandra2:
+    container_name: cassandra2
     image: cassandra:latest
     volumes:
       - "/var/lib/cassandra/node2:/var/lib/cassandra"
@@ -31,6 +33,7 @@ services:
     ports:
       - "29042:9042"
   cassandra3:
+    container_name: cassandra3
     image: cassandra:latest
     volumes:
       - "/var/lib/cassandra/node3:/var/lib/cassandra"
