@@ -99,6 +99,8 @@ Para acessar a instância, basta executar o comando abaixo:
 docker exec -it cassandra5 /bin/bash
 ```
 
+> Para sair da instância docker basta digitar `Control+D` ou `exit` seguido da tecla `ENTER`.
+
 ## Encerrando o Cassandra
 Caso você queira reiniciar o laboratório em uma instância totalmente nova ou mesmo eliminar para higienizar o ambiente, basta executar o comando abaixo:
 ```
