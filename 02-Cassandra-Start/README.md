@@ -38,7 +38,14 @@ A imagem que vamos utilizar é a [`infobarbosa/cassandra5:latest`](https://hub.d
 
 ## Inicialização
 ```
-docker compose -d -f ./02-Cassandra-Start/assets/scripts/compose.yaml up
+docker compose -f ./02-Cassandra-Start/assets/scripts/compose.yaml up -d
+```
+
+Output esperado:
+```
+[+] Running 2/2
+ ✔ Network infobarbankdb_default  Created                                      0.1s 
+ ✔ Container cassandra5           Started                                      0.8s 
 ```
 
 Para verificar se está tudo correto:
@@ -47,7 +54,18 @@ docker compose -f ./02-Cassandra-Start/assets/scripts/compose.yaml logs -f
 ```
 > Para sair do comando acima, digite `Control+C`
 
-## Checando a instalação
+## Checando a inicialização
+Vamos verificar se o container subiu com o seguinte comando:
+```
+docker ps -a
+```
+
+Output esperado:
+```
+CONTAINER ID   IMAGE                           COMMAND                  CREATED              STATUS              PORTS                                                                          NAMES
+daeb5575b6e7   infobarbosa/cassandra5:latest   "docker-entrypoint.s…"   About a minute ago   Up About a minute   7000-7001/tcp, 7199/tcp, 9160/tcp, 0.0.0.0:9042->9042/tcp, :::9042->9042/tcp   cassandra5
+```
+
 Se tudo correu bem então será possível verificar o status do node:
 ```
 docker exec -it cassandra5 nodetool status
