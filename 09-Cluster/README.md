@@ -21,16 +21,17 @@ sudo snap install cqlsh
 
 ### Inspecionando `compose.yaml`
 ```
-ls -latr compose.yaml
+ls -latr ./09-Cluster/assets/scripts/compose.yaml
+```
 
-cat compose.yaml
-
+```
+cat ./09-Cluster/assets/scripts/compose.yaml
 ```
 
 ### Inicializando o cluster
 Por comodidade e também restrição de recursos de cpu e memória do nosso laboratório, vamos inicializar um cluster com apenas 2 nós.
 ```
-docker compose up -d
+docker compose -f ./09-Cluster/assets/scripts/compose.yaml up -d
 
 ```
 
@@ -41,14 +42,14 @@ Pra verificar as instâncias em funcionamento via docker, execute o comando:
 docker stats
 ```
 
-Output:
+Output esperado:
 ```
 CONTAINER ID   NAME                         CPU %     MEM USAGE / LIMIT   MEM %     NET I/O           BLOCK I/O        PIDS
 ecef529adeab   infobarbankdb-cassandra2-1   1.76%     645MiB / 768MiB     83.99%    83.4kB / 80.4kB   398MB / 5.14MB   54
 0cd5b5f9444f   infobarbankdb-cassandra1-1   1.38%     560.7MiB / 768MiB   73.01%    81.8kB / 82.2kB   821MB / 5.14MB   53
 ```
 
-    Para sair precione Ctrl+C
+Para sair precione Ctrl+C
 
 Para verificar o status de inicialização, execute o seguinte:
 ```
