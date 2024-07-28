@@ -13,8 +13,7 @@ De forma prática há dois modos de utilizar com o `cqlsh`: interativo e não in
 No modo interativo executa-se o comando `cqlsh` que disponibiliza então um prompt onde é possível emitir comandos CQL com resposta no próprio console.
 O console se mantém aberto aguardando os próximos comandos CQL.
 
-Por exemplo:
-**Abrindo o `cqlsh`**
+#### Abra o `cqlsh`
 ```
 cqlsh
 ```
@@ -28,7 +27,7 @@ Use HELP for help.
 cqlsh> 
 ```
 
-**Executando um comando**
+#### Execute um comando
 ```
 DESCRIBE KEYSPACES;
 ```
