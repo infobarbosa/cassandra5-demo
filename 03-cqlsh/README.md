@@ -41,6 +41,10 @@ infobarbank  system_auth         system_schema  system_views
 system       system_distributed  system_traces  system_virtual_schema
 ``` 
 
+#### Saia do `cqlsh`
+Neste laboratório vamos utilizar apenas o modo *não interativo* descrito a seguir.<br>
+Para deixar o cqlsh, digite `Control+D` ou digite `exit` seguido da tecla `ENTER`.
+
 ## 2 - Não interativo
 No modo não interativo executa-se o mesmo comando `cqlsh`, porém desta vez com o parâmetro `-e` ou `--execute` seguido do comando desejado.<br>
 Nessa condição o `cqlsh` executa o comando e sai imediatamente.
