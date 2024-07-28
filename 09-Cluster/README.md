@@ -51,6 +51,11 @@ ecef529adeab   infobarbankdb-cassandra2-1   1.76%     645MiB / 768MiB     83.99%
 
 Para sair precione Ctrl+C
 
+Outra opção:
+```
+docker ps
+```
+
 Para verificar o status de inicialização, execute o seguinte:
 ```
 docker exec -it infobarbankdb-cassandra2-1 /bin/bash
