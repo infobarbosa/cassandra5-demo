@@ -5,6 +5,19 @@ Github: [infobarbosa](https://github.com/infobarbosa)
 
 Nesta sessão vamos inicializar uma instância stand-alone do Apache Cassandra.
 
+## Clone do projeto
+Faça o clone do projeto com o seguinte comando:
+```
+git clone https://github.com/infobarbosa/cassandra5-demo.git
+```
+
+Então navegue para o diretório do projeto:
+```
+cd cassandra5-demo
+```
+
+> **Atenção!** Todos os comandos deste laboratório pressupõem que você esteja no diretório do projeto.
+
 ## Docker
 Por simplicidade, vamos utilizar o Cassandra em um container baseado em *Docker*.<br>
 Na pasta[02-Cassandra-Start/assets/scripts](./02-Cassandra-Start/assets/scripts) está disponível um arquivo `compose.yaml` que contém os parâmetros de inicialização do container Docker.<br>
