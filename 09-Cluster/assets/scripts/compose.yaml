@@ -10,14 +10,14 @@ services:
       - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
       - CASSANDRA_START_RPC=true       # default
       - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
-      - CASSANDRA_LISTEN_ADDRESS=172.16.1.2
-      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.2
-      - CASSANDRA_SEEDS=172.16.0.2,172.16.0.5
+      - CASSANDRA_LISTEN_ADDRESS=172.16.1.11
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.11
+      - CASSANDRA_SEEDS=172.16.0.11,172.16.0.14
     networks:
       common_net:
-        ipv4_address: 172.16.0.2
+        ipv4_address: 172.16.0.11
       dc1_net:
-        ipv4_address: 172.16.1.2
+        ipv4_address: 172.16.1.11
     restart:
       on-failure
     healthcheck:
@@ -36,17 +36,17 @@ services:
       - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
       - CASSANDRA_START_RPC=true       # default
       - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
-      - CASSANDRA_LISTEN_ADDRESS=172.16.1.3
-      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.3
-      - CASSANDRA_SEEDS=172.16.0.2,172.16.0.5
+      - CASSANDRA_LISTEN_ADDRESS=172.16.1.12
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.12
+      - CASSANDRA_SEEDS=172.16.0.11,172.16.0.14
     depends_on:
       cassandra1:
         condition: service_healthy
     networks:
       common_net:
-        ipv4_address: 172.16.0.3
+        ipv4_address: 172.16.0.12
       dc1_net:
-        ipv4_address: 172.16.1.3
+        ipv4_address: 172.16.1.12
     restart:
       on-failure
     healthcheck:
@@ -65,17 +65,17 @@ services:
       - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
       - CASSANDRA_START_RPC=true       # default
       - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
-      - CASSANDRA_LISTEN_ADDRESS=172.16.1.4
-      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.4
-      - CASSANDRA_SEEDS=172.16.0.2,172.16.0.5
+      - CASSANDRA_LISTEN_ADDRESS=172.16.1.13
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.13
+      - CASSANDRA_SEEDS=172.16.0.11,172.16.0.14
     depends_on:
       cassandra2:
         condition: service_healthy
     networks:
       common_net:
-        ipv4_address: 172.16.0.4
+        ipv4_address: 172.16.0.13
       dc1_net:
-        ipv4_address: 172.16.1.4
+        ipv4_address: 172.16.1.13
     restart:
       on-failure
     healthcheck:
@@ -94,17 +94,17 @@ services:
       - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
       - CASSANDRA_START_RPC=true       # default
       - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
-      - CASSANDRA_LISTEN_ADDRESS=172.16.2.2
-      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.5
-      - CASSANDRA_SEEDS=172.16.0.2,172.16.0.5
+      - CASSANDRA_LISTEN_ADDRESS=172.16.2.14
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.14
+      - CASSANDRA_SEEDS=172.16.0.11,172.16.0.14
     depends_on:
       cassandra3:
         condition: service_healthy
     networks:
       common_net:
-        ipv4_address: 172.16.0.5
+        ipv4_address: 172.16.0.14
       dc2_net:
-        ipv4_address: 172.16.2.2
+        ipv4_address: 172.16.2.14
     restart:
       on-failure
     healthcheck:
@@ -123,17 +123,17 @@ services:
       - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
       - CASSANDRA_START_RPC=true       # default
       - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
-      - CASSANDRA_LISTEN_ADDRESS=172.16.2.3
-      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.6
-      - CASSANDRA_SEEDS=172.16.0.2,172.16.0.5
+      - CASSANDRA_LISTEN_ADDRESS=172.16.2.15
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.15
+      - CASSANDRA_SEEDS=172.16.0.11,172.16.0.14
     depends_on:
       cassandra4:
         condition: service_healthy
     networks:
       common_net:
-        ipv4_address: 172.16.0.6
+        ipv4_address: 172.16.0.15
       dc2_net:
-        ipv4_address: 172.16.2.3
+        ipv4_address: 172.16.2.15
     restart:
       on-failure
     healthcheck:
@@ -152,17 +152,17 @@ services:
       - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
       - CASSANDRA_START_RPC=true       # default
       - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
-      - CASSANDRA_LISTEN_ADDRESS=172.16.2.4
-      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.7
-      - CASSANDRA_SEEDS=172.16.0.2,172.16.0.5
+      - CASSANDRA_LISTEN_ADDRESS=172.16.2.16
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.16
+      - CASSANDRA_SEEDS=172.16.0.11,172.16.0.14
     depends_on:
       cassandra5:
         condition: service_healthy
     networks:
       common_net:
-        ipv4_address: 172.16.0.7
+        ipv4_address: 172.16.0.16
       dc2_net:
-        ipv4_address: 172.16.2.4
+        ipv4_address: 172.16.2.16
     restart:
       on-failure
     healthcheck:
