@@ -1,0 +1,81 @@
+name: infobarbank-cluster
+services:
+  cassandra1:
+    image: infobarbosa/cassandra5:latest
+    container_name: cassandra1
+    environment:
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_START_RPC=true       # default
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
+      - CASSANDRA_LISTEN_ADDRESS=auto
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.11
+      - CASSANDRA_SEEDS=172.16.0.11
+    networks:
+      common_net:
+        ipv4_address: 172.16.0.11
+    restart:
+      on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  cassandra2:
+    image: infobarbosa/cassandra5:latest
+    container_name: cassandra2
+    environment:
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_START_RPC=true       # default
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
+      - CASSANDRA_LISTEN_ADDRESS=auto
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.12
+      - CASSANDRA_SEEDS=172.16.0.11
+    depends_on:
+      cassandra1:
+        condition: service_healthy
+    networks:
+      common_net:
+        ipv4_address: 172.16.0.12
+    restart:
+      on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  cassandra3:
+    image: infobarbosa/cassandra5:latest
+    container_name: cassandra3
+    environment:
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_START_RPC=true       # default
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
+      - CASSANDRA_LISTEN_ADDRESS=auto
+      - CASSANDRA_BROADCAST_ADDRESS=172.16.0.13
+      - CASSANDRA_SEEDS=172.16.0.11
+    depends_on:
+      cassandra2:
+        condition: service_healthy
+    networks:
+      common_net:
+        ipv4_address: 172.16.0.13
+    restart:
+      on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+
+networks:
+  common_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
