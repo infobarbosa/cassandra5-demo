@@ -9,9 +9,9 @@ Nesse laboratório vamos trabalhar com tabelas do Cassandra.
 ```
 cqlsh -e "
 CREATE TABLE ks001.cliente(
-    id text PRIMARY KEY, 
-    cpf text, 
-    nome text
+    id_cliente text PRIMARY KEY, 
+    cpf        text, 
+    nome       text
 );"
 
 ```
@@ -24,36 +24,18 @@ cqlsh -e "DESCRIBE TABLE ks001.cliente;"
 
 O output deve ser algo assim:
 ```
-CREATE TABLE ks001.cliente (
-    id text PRIMARY KEY,
-    cpf text,
-    nome text
-) WITH additional_write_policy = '99p'
-    AND allow_auto_snapshot = true
-    AND bloom_filter_fp_chance = 0.01
-    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
-    AND cdc = false
-    AND comment = ''
-    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
-    AND compression = {'chunk_length_in_kb': '16', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
-    AND memtable = 'default'
-    AND crc_check_chance = 1.0
-    AND default_time_to_live = 0
-    AND extensions = {}
-    AND gc_grace_seconds = 864000
-    AND incremental_backups = true
-    AND max_index_interval = 2048
-    AND memtable_flush_period_in_ms = 0
-    AND min_index_interval = 128
-    AND read_repair = 'BLOCKING'
-    AND speculative_retry = '99p';
+
 ```
 
 ### INSERT
 ```
 cqlsh -e "
-INSERT INTO ks001.cliente(id, cpf, nome) 
-VALUES ('6ad8b386', '11111111111', 'marcelo barbosa');"
+INSERT INTO ks001.cliente(id_cliente, cpf, nome) 
+VALUES ('1a1a1a1a', '11111111111', 'marcelo barbosa');"
+
+cqlsh -e "
+INSERT INTO ks001.cliente(id_cliente, cpf, nome) 
+VALUES ('2b2b2b2b', '22222222222', 'juscelino kubitschek');"
 
 ```
 
@@ -65,13 +47,7 @@ cqlsh -e "SELECT * FROM ks001.cliente;"
 
 Output:
 ```
-root@d3cb569bd839:/# cqlsh -e "SELECT * FROM ks001.cliente;"
 
- id       | cpf         | nome
-----------+-------------+-----------------
- 6ad8b386 | 11111111111 | marcelo barbosa
-
-(1 rows)
 ```
 
 ##### Busca pela chave
@@ -79,21 +55,13 @@ root@d3cb569bd839:/# cqlsh -e "SELECT * FROM ks001.cliente;"
 cqlsh -e "
 SELECT * 
 FROM ks001.cliente 
-WHERE id = '6ad8b386';"
+WHERE id_cliente = '1a1a1a1a';"
 
 ```
+
 Output:
 ```
-root@d3cb569bd839:/# cqlsh -e "
-> SELECT * 
-> FROM ks001.cliente 
-> WHERE id = '6ad8b386';"
 
- id       | cpf         | nome
-----------+-------------+-----------------
- 6ad8b386 | 11111111111 | marcelo barbosa
-
-(1 rows)
 ```
 
 ##### Busca por um campo não-chave
@@ -115,7 +83,7 @@ Output:
 cqlsh -e "
 UPDATE ks001.cliente 
 SET nome = 'marcelo b.' 
-WHERE id = '6ad8b386';"
+WHERE id_cliente = '1a1a1a1a';"
 
 ```
 
@@ -124,29 +92,20 @@ Conferindo:
 cqlsh -e "
 SELECT * 
 FROM ks001.cliente 
-WHERE id = '6ad8b386';"
+WHERE id_cliente = '1a1a1a1a';"
 
 ```
 
 Output:
 ```
-root@d3cb569bd839:/# cqlsh -e "
-> SELECT * 
-> FROM ks001.cliente 
-> WHERE id = '6ad8b386';"
 
- id       | cpf         | nome
-----------+-------------+------------
- 6ad8b386 | 11111111111 | marcelo b.
-
-(1 rows)
 ```
 
 ### DELETE
 ```
 cqlsh -e "
 DELETE FROM ks001.cliente 
-WHERE id = '6ad8b386';"
+WHERE id_cliente = '1a1a1a1a';"
 
 ```
 
@@ -155,24 +114,12 @@ Conferindo:
 cqlsh -e "
 SELECT * 
 FROM ks001.cliente 
-WHERE id = '6ad8b386';"
+WHERE id_cliente = '1a1a1a1a';"
 
 ```
 
 Output:
 ```
-root@d3cb569bd839:/# cqlsh -e "
-> SELECT * 
-> FROM ks001.cliente 
-> WHERE id = '6ad8b386';"
-
- id | cpf | nome
-----+-----+------
-```
-
-### TRUNCATE TABLE
-```
-cqlsh -e "TRUNCATE TABLE ks001.cliente;"
 
 ```
 
@@ -186,7 +133,7 @@ Mas como se dá isso? Vamos criar outra tabela `pedido` e experimentar!
 ```
 cqlsh -e "
     CREATE TABLE ks001.pedido(
-        id          int PRIMARY KEY, 
+        id_pedido   int PRIMARY KEY, 
         id_cliente  text, 
         data        date, 
         valor       float,
@@ -202,8 +149,8 @@ cqlsh -e "DESCRIBE TABLE ks001.pedido;"
 Inserindo um pedido de exemplo:
 ```
 cqlsh -e "
-    INSERT INTO ks001.pedido(id, id_cliente, data, valor, endereco, item) 
-    VALUES (123, '6ad8b386', '2023-02-01', 30.00, 'Rua Cassandra, No.9042, Bairro NoSQL', 'Camiseta');"
+    INSERT INTO ks001.pedido(id_pedido, id_cliente, data, valor, endereco, item) 
+    VALUES (123, '2b2b2b2b', '2023-02-01', 30.00, 'Rua Cassandra, No.9042, Bairro NoSQL', 'Camiseta');"
 ```
 
 ```
@@ -220,15 +167,27 @@ Output:
 Agora queremos executar uma consulta que retorne o CPF do cliente e seus pedidos:
 ```
 cqlsh -e "
-    SELECT cliente.cpf, pedido.id, pedido.data, pedido.item
-    FROM cliente JOIN pedido ON cliente.id = pedido.id_cliente
-    WHERE cliente.id = 10;"
+SELECT cliente.cpf, pedido.id_pedido, pedido.data, pedido.item
+FROM cliente JOIN pedido ON cliente.id_cliente = pedido.id_cliente
+WHERE cliente.id_cliente = '2b2b2b2b';"
 
 ```
 
 Output:
 ```
 
+
+```
+
+### TRUNCATE TABLE
+```
+cqlsh -e "TRUNCATE TABLE ks001.cliente;"
+
+```
+
+Conferindo:
+```
+cqlsh -e "SELECT * FROM ks001.cliente;"
 
 ```
 
