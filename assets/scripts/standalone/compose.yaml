@@ -19,7 +19,7 @@ services:
     restart:
       on-failure
     healthcheck:
-      test: ["CMD-SHELL", "nodetool status"]
+      test: ['CMD-SHELL', "nodetool status | grep '^UN' || exit 1"]
       interval: 60s
       timeout: 10s
       retries: 5

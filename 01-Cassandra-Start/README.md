@@ -17,7 +17,7 @@ Na pasta[02-Cassandra-Start/assets/scripts](./02-Cassandra-Start/assets/scripts)
 Embora não seja escopo deste laboratório o entendimento detalhado do Docker, recomendo o estudo do arquivo `compose.yaml`.
 
 ```
-ls -la ./cassandra5-demo/assets/scripts/compose.yaml
+ls -la ./cassandra5-demo/assets/scripts/standalone/compose.yaml
 
 ```
 
@@ -28,7 +28,7 @@ Output esperado:
 
 Verifique o conteúdo do arquivo:
 ```
-cat ./cassandra5-demo/assets/scripts/compose.yaml
+cat ./cassandra5-demo/assets/scripts/standalone/compose.yaml
 
 ```
 
