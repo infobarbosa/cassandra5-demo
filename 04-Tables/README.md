@@ -5,20 +5,10 @@ Github: [infobarbosa](https://github.com/infobarbosa)
 
 Nesse laboratório vamos trabalhar com tabelas do Cassandra.
 
-Crie uma nova **keyspace** para este lab:
-```
-cqlsh -e "
-    CREATE KEYSPACE infobarbank2
-        WITH REPLICATION = {
-            'class' : 'SimpleStrategy', 
-            'replication_factor':1  
-        };"
-```
-
 ### CREATE TABLE
 ```
 cqlsh -e "
-    CREATE TABLE infobarbank2.cliente(
+    CREATE TABLE ks001.cliente(
         id uuid PRIMARY KEY, 
         cpf text, 
         nome text
@@ -27,12 +17,12 @@ cqlsh -e "
 
 ### DESCRIBE TABLE
 ```
-cqlsh -e "DESCRIBE TABLE infobarbank2.cliente;"
+cqlsh -e "DESCRIBE TABLE ks001.cliente;"
 ```
 
 O output deve ser algo assim:
 ```
-CREATE TABLE infobarbank2.cliente (
+CREATE TABLE ks001.cliente (
     id uuid PRIMARY KEY,
     cpf text,
     nome text
@@ -57,7 +47,7 @@ CREATE TABLE infobarbank2.cliente (
 ### INSERT
 ```
 cqlsh -e "
-    INSERT INTO infobarbank2.cliente(
+    INSERT INTO ks001.cliente(
         id, 
         cpf, 
         nome
@@ -73,14 +63,14 @@ cqlsh -e "
 ```
 cqlsh -e "
     SELECT * 
-    FROM infobarbank2.cliente;"
+    FROM ks001.cliente;"
 ```
 
 ##### Busca pela chave
 ```
 cqlsh -e "
     SELECT * 
-    FROM infobarbank2.cliente 
+    FROM ks001.cliente 
     WHERE id = 6ad8b386-1015-11ed-861d-0242ac120002;"
 ```
 Output:
@@ -94,7 +84,7 @@ Output:
 ```
 cqlsh -e "
     SELECT * 
-    FROM infobarbank2.cliente 
+    FROM ks001.cliente 
     WHERE nome = 'marcelo barbosa';"
 ```
 
@@ -106,7 +96,7 @@ InvalidRequest: Error from server: code=2200 [Invalid query] message="Cannot exe
 ### UPDATE
 ```
 cqlsh -e "
-    UPDATE infobarbank2.cliente 
+    UPDATE ks001.cliente 
     SET nome = 'marcelo b.' 
     WHERE id = 6ad8b386-1015-11ed-861d-0242ac120002;"
 ```
@@ -115,25 +105,25 @@ Conferindo:
 ```
 cqlsh -e "
     SELECT * 
-    FROM infobarbank2.cliente 
+    FROM ks001.cliente 
     WHERE id = 6ad8b386-1015-11ed-861d-0242ac120002;"
 ```
 
 ### DELETE
 ```
 cqlsh -e "
-    DELETE FROM infobarbank2.cliente 
+    DELETE FROM ks001.cliente 
     WHERE id = 6ad8b386-1015-11ed-861d-0242ac120002;"
 ```
 
 ### TRUNCATE TABLE
 ```
-cqlsh -e "TRUNCATE TABLE infobarbank2.cliente;"
+cqlsh -e "TRUNCATE TABLE ks001.cliente;"
 ```
 
 ### DROP TABLE
 ```
-cqlsh -e "DROP TABLE infobarbank2.cliente;"
+cqlsh -e "DROP TABLE ks001.cliente;"
 ```
 
 
@@ -144,7 +134,7 @@ Vamos recriar a tabela `cliente` e adicionalmente criar outra tabela `pedido`.
 ##### Criando a tabela `cliente`
 ```
 cqlsh -e "
-    CREATE TABLE infobarbank2.cliente(
+    CREATE TABLE ks001.cliente(
         id int PRIMARY KEY, 
         cpf text, 
         nome text
@@ -152,23 +142,23 @@ cqlsh -e "
 ```
 
 ```
-cqlsh -e "DESCRIBE TABLE infobarbank2.cliente;"
+cqlsh -e "DESCRIBE TABLE ks001.cliente;"
 ```
 
 Criando um cliente
 ```
 cqlsh -e "
-    INSERT INTO infobarbank2.cliente(id, cpf, nome) 
+    INSERT INTO ks001.cliente(id, cpf, nome) 
     VALUES (10, '11111111111', 'marcelo barbosa');"
 ```
 
 ```
-cqlsh -e "select * from infobarbank2.cliente;"
+cqlsh -e "select * from ks001.cliente;"
 ```
 
 Output:
 ```
-cqlsh> select * from infobarbank2.cliente ;
+cqlsh> select * from ks001.cliente ;
 
  id | cpf         | nome
 ----+-------------+-----------------
@@ -178,7 +168,7 @@ cqlsh> select * from infobarbank2.cliente ;
 ##### Criando a tabela `pedido`
 ```
 cqlsh -e "
-    CREATE TABLE infobarbank2.pedido(
+    CREATE TABLE ks001.pedido(
         id          int PRIMARY KEY, 
         id_cliente  int, 
         data        date, 
@@ -189,23 +179,23 @@ cqlsh -e "
 ```
 
 ```
-cqlsh -e "DESCRIBE TABLE infobarbank2.pedido;"
+cqlsh -e "DESCRIBE TABLE ks001.pedido;"
 ```
 
 Inserindo um pedido de exemplo:
 ```
 cqlsh -e "
-    INSERT INTO infobarbank2.pedido(id, id_cliente, data, valor, endereco, item) 
+    INSERT INTO ks001.pedido(id, id_cliente, data, valor, endereco, item) 
     VALUES (123, 10, '2023-02-01', 30.00, 'Rua Cassandra, No.9042, Bairro NoSQL', 'Camiseta');"
 ```
 
 ```
-cqlsh -e "select * from infobarbank2.pedido;"
+cqlsh -e "select * from ks001.pedido;"
 ```
 
 Output:
 ```
-cqlsh> select * from infobarbank2.pedido ;
+cqlsh> select * from ks001.pedido ;
 
  id  | data       | endereco                             | id_cliente | item     | valor
 -----+------------+--------------------------------------+------------+----------+-------
