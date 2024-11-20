@@ -13,7 +13,7 @@ git clone https://github.com/infobarbosa/cassandra5-demo.git
 
 ## Docker
 Por simplicidade, vamos utilizar o Cassandra em um container baseado em *Docker*.<br>
-Na pasta[assets/scripts/standalone](./assets/scripts/standalone) está disponível um arquivo `compose.yaml` que contém os parâmetros de inicialização do container Docker.<br>
+Na pasta [assets/scripts/standalone](./assets/scripts/standalone) está disponível um arquivo `compose.yaml` que contém os parâmetros de inicialização do container Docker.<br>
 Embora não seja escopo deste laboratório o entendimento detalhado do Docker, recomendo o estudo do arquivo `compose.yaml`.
 
 ```
