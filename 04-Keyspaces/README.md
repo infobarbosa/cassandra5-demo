@@ -6,7 +6,7 @@ Github: [infobarbosa](https://github.com/infobarbosa)
 Criando uma keyspace simples:
 ```
 cqlsh -e "
-  CREATE KEYSPACE infobarbank1
+  CREATE KEYSPACE ks001
       WITH REPLICATION = {
           'class' : 'SimpleStrategy', 
           'replication_factor':1  
@@ -34,7 +34,7 @@ A segmentação facilita a administração das aplicações.
 ### Descrevendo keyspaces
 Caso você queira saber a definição de uma `keyspace`, é possível via comando `describe`:
 ```
-cqlsh -e "describe keyspace infobarbank1;"
+cqlsh -e "describe keyspace ks001;"
 ```
 
 ### Outros exemplos
@@ -42,10 +42,10 @@ cqlsh -e "describe keyspace infobarbank1;"
 Em **produção** normalmente utilizaremos a classe `NetworkTopologyStrategy` para distribuição das réplicas em diversos datacenters, zonas de disponibilidade, regiões geográficas, etc.
 A seguir proponho alguns exemplos para debate.<br> 
 
-No caso abaixo estamos criando a keyspace **infobarbank1** com distribuição geográfica em 3 países diferentes: Brasil, EUA e Alemanha.<br>
+No caso abaixo estamos criando a keyspace **ks001** com distribuição geográfica em 3 países diferentes: Brasil, EUA e Alemanha.<br>
 Perceba que é possível determinar quantas cópias do dado queremos em cada cidade/região. Nesse caso 3 cópias no Brasil, 3 cópias nos EUA e 2 cópias na Alemanha.
 ```
-CREATE KEYSPACE infobarbank1
+CREATE KEYSPACE ks001
   WITH REPLICATION = {
    'class'  : 'NetworkTopologyStrategy', 
    'bra-sp' : 3 , // São Paulo/Brasil
@@ -58,7 +58,7 @@ A seguir temos uma situação diferente, apenas uma região (Brasil). Porém, ne
 Trata-se de um único cluster Cassandra segmentado em dois propósitos, OLTP (transacional) e OLAP (analítico).
 Nos nós transacionais determinamos 3 cópias em casa zona (totalizando 6 cópias transacionais) enquanto que nos nós analíticos apenas 1 cópia em cada zona (totalizando 2 cópias analíticas).
 ```
-CREATE KEYSPACE infobarbank1
+CREATE KEYSPACE ks001
   WITH REPLICATION = {
    'class'  : 'NetworkTopologyStrategy', 
    'bra-sp-az1-oltp' : 3 , // Transacional AZ1 em São Paulo/Brasil
@@ -71,7 +71,7 @@ CREATE KEYSPACE infobarbank1
 O comando a seguir entrega exatamente a mesma topologia do comando anterior. Porém, depende da instalação executada pelo administrador Cassandra.<br>
 Por ser um tópico mais avançado, discutiremos em sala de aula a diferença no nível físico. 
 ```
-CREATE KEYSPACE infobarbank1
+CREATE KEYSPACE ks001
   WITH REPLICATION = {
    'class'  : 'NetworkTopologyStrategy', 
    'bra-sp-oltp' : 6, 
