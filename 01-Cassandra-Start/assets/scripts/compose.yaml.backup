@@ -1,9 +1,0 @@
-name: infobarbankdb
-services:
-  cassandra1:
-    container_name: cassandra5
-    image: infobarbosa/cassandra5:latest
-    expose:
-      - 9042
-    ports:
-      - "9042:9042"
