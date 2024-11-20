@@ -24,7 +24,29 @@ cqlsh -e "DESCRIBE TABLE ks001.cliente;"
 
 O output deve ser algo assim:
 ```
-
+CREATE TABLE ks001.cliente (
+    id_cliente text PRIMARY KEY,
+    cpf text,
+    nome text
+) WITH additional_write_policy = '99p'
+    AND allow_auto_snapshot = true
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND cdc = false
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '16', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND memtable = 'default'
+    AND crc_check_chance = 1.0
+    AND default_time_to_live = 0
+    AND extensions = {}
+    AND gc_grace_seconds = 864000
+    AND incremental_backups = true
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair = 'BLOCKING'
+    AND speculative_retry = '99p';
 ```
 
 ### INSERT
@@ -47,7 +69,14 @@ cqlsh -e "SELECT * FROM ks001.cliente;"
 
 Output:
 ```
+root@7bc306de4e1b:/# cqlsh -e "SELECT * FROM ks001.cliente;"
 
+ id_cliente | cpf         | nome
+------------+-------------+----------------------
+   1a1a1a1a | 11111111111 |      marcelo barbosa
+   2b2b2b2b | 22222222222 | juscelino kubitschek
+
+(2 rows)
 ```
 
 ##### Busca pela chave
@@ -61,7 +90,16 @@ WHERE id_cliente = '1a1a1a1a';"
 
 Output:
 ```
+root@7bc306de4e1b:/# cqlsh -e "
+> SELECT * 
+> FROM ks001.cliente 
+> WHERE id_cliente = '1a1a1a1a';"
 
+ id_cliente | cpf         | nome
+------------+-------------+-----------------
+   1a1a1a1a | 11111111111 | marcelo barbosa
+
+(1 rows)
 ```
 
 ##### Busca por um campo não-chave
@@ -98,7 +136,16 @@ WHERE id_cliente = '1a1a1a1a';"
 
 Output:
 ```
+root@7bc306de4e1b:/# cqlsh -e "
+> SELECT * 
+> FROM ks001.cliente 
+> WHERE id_cliente = '1a1a1a1a';"
 
+ id_cliente | cpf         | nome
+------------+-------------+------------
+   1a1a1a1a | 11111111111 | marcelo b.
+
+(1 rows)
 ```
 
 ### DELETE
@@ -120,7 +167,16 @@ WHERE id_cliente = '1a1a1a1a';"
 
 Output:
 ```
+root@7bc306de4e1b:/# cqlsh -e "
+> SELECT * 
+> FROM ks001.cliente 
+> WHERE id_cliente = '1a1a1a1a';"
 
+ id_cliente | cpf | nome
+------------+-----+------
+
+
+(0 rows)
 ```
 
 
@@ -140,17 +196,52 @@ cqlsh -e "
         endereco    text,
         item        text
     );"
+
 ```
 
 ```
 cqlsh -e "DESCRIBE TABLE ks001.pedido;"
+
+```
+
+Conferindo:
+```
+root@7bc306de4e1b:/# cqlsh -e "DESCRIBE TABLE ks001.pedido;"
+
+CREATE TABLE ks001.pedido (
+    id_pedido int PRIMARY KEY,
+    data date,
+    endereco text,
+    id_cliente text,
+    item text,
+    valor float
+) WITH additional_write_policy = '99p'
+    AND allow_auto_snapshot = true
+    AND bloom_filter_fp_chance = 0.01
+    AND caching = {'keys': 'ALL', 'rows_per_partition': 'NONE'}
+    AND cdc = false
+    AND comment = ''
+    AND compaction = {'class': 'org.apache.cassandra.db.compaction.SizeTieredCompactionStrategy', 'max_threshold': '32', 'min_threshold': '4'}
+    AND compression = {'chunk_length_in_kb': '16', 'class': 'org.apache.cassandra.io.compress.LZ4Compressor'}
+    AND memtable = 'default'
+    AND crc_check_chance = 1.0
+    AND default_time_to_live = 0
+    AND extensions = {}
+    AND gc_grace_seconds = 864000
+    AND incremental_backups = true
+    AND max_index_interval = 2048
+    AND memtable_flush_period_in_ms = 0
+    AND min_index_interval = 128
+    AND read_repair = 'BLOCKING'
+    AND speculative_retry = '99p';
 ```
 
 Inserindo um pedido de exemplo:
 ```
 cqlsh -e "
-    INSERT INTO ks001.pedido(id_pedido, id_cliente, data, valor, endereco, item) 
-    VALUES (123, '2b2b2b2b', '2023-02-01', 30.00, 'Rua Cassandra, No.9042, Bairro NoSQL', 'Camiseta');"
+INSERT INTO ks001.pedido(id_pedido, id_cliente, data, valor, endereco, item) 
+VALUES (123, '2b2b2b2b', '2023-02-01', 30.00, 'Rua Cassandra, No.9042, Bairro NoSQL', 'Camiseta');"
+
 ```
 
 ```
@@ -160,7 +251,13 @@ cqlsh -e "select * from ks001.pedido;"
 
 Output:
 ```
+root@7bc306de4e1b:/# cqlsh -e "select * from ks001.pedido;"
 
+ id_pedido | data       | endereco                             | id_cliente | item     | valor
+-----------+------------+--------------------------------------+------------+----------+-------
+       123 | 2023-02-01 | Rua Cassandra, No.9042, Bairro NoSQL |   2b2b2b2b | Camiseta |    30
+
+(1 rows)
 ```
 
 ##### A junção
@@ -175,8 +272,7 @@ WHERE cliente.id_cliente = '2b2b2b2b';"
 
 Output:
 ```
-
-
+<stdin>:1:SyntaxException: line 2:13 no viable alternative at input 'JOIN' (....data, pedido.itemFROM [cliente] JOIN...)
 ```
 
 ### TRUNCATE TABLE
@@ -189,6 +285,17 @@ Conferindo:
 ```
 cqlsh -e "SELECT * FROM ks001.cliente;"
 
+```
+
+Output:
+```
+root@7bc306de4e1b:/# cqlsh -e "SELECT * FROM ks001.cliente;"
+
+ id_cliente | cpf | nome
+------------+-----+------
+
+
+(0 rows)
 ```
 
 ### DROP TABLE
