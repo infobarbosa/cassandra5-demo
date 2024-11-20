@@ -11,6 +11,7 @@ cqlsh -e "
           'class' : 'SimpleStrategy', 
           'replication_factor':1  
       };"
+
 ```
 
 Uma `keyspace` é um repositório lógico para tabelas. <br>
@@ -35,6 +36,12 @@ A segmentação facilita a administração das aplicações.
 Caso você queira saber a definição de uma `keyspace`, é possível via comando `describe`:
 ```
 cqlsh -e "describe keyspace ks001;"
+
+```
+
+Output:
+```
+CREATE KEYSPACE ks001 WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}  AND durable_writes = true;
 ```
 
 ### Outros exemplos
