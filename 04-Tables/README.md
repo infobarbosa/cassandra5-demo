@@ -13,6 +13,7 @@ CREATE TABLE ks001.cliente(
     cpf text, 
     nome text
 );"
+
 ```
 
 ### DESCRIBE TABLE
