@@ -40,12 +40,16 @@ docker compose -f ./cassandra5-demo/assets/scripts/standalone/compose.yaml up -d
 
 Output esperado:
 ```
-
+voclabs:~/environment $ docker compose -f ./cassandra5-demo/assets/scripts/standalone/compose.yaml up -d
+[+] Running 3/3
+ ✔ Network cassandra-standalone_common_net  Created 
+ ✔ Container cassandra-database             Healthy 
+ ✔ Container cassandra-init                 Started 
 ```
 
 Para verificar se está tudo correto:
 ```
-docker compose -f ./cassandra5-demo/assets/scripts/standalone/compose.yaml logs -f
+docker logs -f cassandra-database 
 
 ```
 > Para sair do comando acima, digite `Control+C`
@@ -59,18 +63,26 @@ docker ps -a
 
 Output esperado:
 ```
-
+CONTAINER ID   IMAGE                                             COMMAND                  CREATED         STATUS                     PORTS                                         NAMES
+3084fe9ee0c4   infobarbosa/infobarbank-cassandra-schema:latest   "python3 infobarbank…"   3 minutes ago   Exited (0) 2 minutes ago                                                 cassandra-init
+d3cb569bd839   cassandra:latest                                  "docker-entrypoint.s…"   3 minutes ago   Up 3 minutes (healthy)     7000-7001/tcp, 7199/tcp, 9042/tcp, 9160/tcp   cassandra-database
 ```
 
 Se tudo correu bem então será possível verificar o status do node:
 ```
-docker exec -it cassandra-demo nodetool status
+docker exec -it cassandra-database nodetool status
 
 ```
 
 Output esperado:
 ```
-
+voclabs:~/environment $ docker exec -it cassandra-database nodetool status
+Datacenter: datacenter1
+=======================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address      Load        Tokens  Owns (effective)  Host ID                               Rack
+UN  172.16.0.11  109.18 KiB  16      100.0%            d1f6b84a-6d7d-469e-8b93-46887cf69b25  RAC1
 ```
 
 **Atenção!** Se retornar o erro erro abaixo, é provável que o serviço Cassandra ainda esteja em processo de inicialização.
@@ -88,7 +100,7 @@ Espere alguns segundos até que a inicialização tenha terminado e execute o co
 
 Para acessar a instância, basta executar o comando abaixo:
 ```
-docker exec -it cassandra-demo /bin/bash
+docker exec -it cassandra-database /bin/bash
 
 ```
 
