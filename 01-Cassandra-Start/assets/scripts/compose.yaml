@@ -1,8 +1,8 @@
-name: cassandra-cluster
+name: cassandra-standalone
 services:
-  cassandra1:
+  cassandra-database:
     image: cassandra:latest
-    container_name: cassandra1
+    container_name: cassandra-database
     environment:
       - CASSANDRA_CLUSTER_NAME=infobarbosainc
       - CASSANDRA_DC=datacenter1
@@ -28,10 +28,10 @@ services:
     image: infobarbosa/infobarbank-cassandra-schema:latest
     container_name: cassandra-init
     environment:
-      - CASSANDRA_CONTACT_POINTS=cassandra1
+      - CASSANDRA_CONTACT_POINTS=cassandra-database
       - CASSANDRA_REPLICATION_FACTOR=1
     depends_on:
-      cassandra1:
+      cassandra-database:
         condition: service_healthy
     networks:
       - common_net
