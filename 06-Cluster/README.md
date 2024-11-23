@@ -337,97 +337,72 @@ Perceba que alguns estarão disponíveis enquanto outros retornarão a seguinte 
 <stdin>:1:NoHostAvailable: ('Unable to complete the operation against any hosts', {<Host: 127.0.0.1:9042 datacenter1>: Unavailable('Error from server: code=1000 [Unavailable exception] message="Cannot achieve consistency level ONE" info={\'consistency\': \'ONE\', \'required_replicas\': 1, \'alive_replicas\': 0}')})
 ```
 
-1. Marivalda
 ```
+# 1. Marivalda
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b162060';"
 
-```
 
-2. Jucilene
-```
+# 2. Jucilene
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b16242a';"
 
-```
-
-3. Gracimar
-```
+# 3. Gracimar
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b16256a';"
 
-```
-
-4. Aldenora
-```
+# 4. Aldenora
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b16353c';"
 
-```
-
-5. Vera
-```
+#5. Vera
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b1636ae';"
 
-```
-
-6. Ivone
-```
+# 6. Ivone
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b16396a';"
 
-```
-
-7. Lucilia
-```
+# 7. Lucilia
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b163bcc';"
 
-```
-
-8. Francisca
-```
+#8. Francisca
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b163cda';"
-```
 
-9. Bruna
-```
+# 9. Bruna
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b163dde';"
 
-```
-
-10. Lucilene
-```
+# 10. Lucilene
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome 
