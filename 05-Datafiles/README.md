@@ -109,10 +109,22 @@ ls -la /var/lib/cassandra/commitlog
 
 ```
 
+Vamos analisar o arquivo de commit log mais recente:
 ```
-hexdump -C /var/lib/cassandra/commitlog/[O_COMMITLOG_MAIS_RECENTE] | more
+hexdump -C $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) | grep MARIVALDA
 
 ```
+
+```
+hexdump -C $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) | grep JUCILENE
+
+```
+
+```
+hexdump -C $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) | grep GRACIMAR
+
+```
+
 
 5. Nodetool flush
 Agora vamos forçar o flush da **memtable** para o disco:
@@ -126,7 +138,6 @@ Após a execução de `nodetool flush`, uma nova listagem de arquivos (`ls -la`)
 ls -la $CLIENTE_DATAFILE_PATH
 
 ```
-
 
 Output:
 ```
@@ -221,7 +232,6 @@ ls -la $CLIENTE_DATAFILE_PATH
 ```
 
 
-
 3. Commit logs
 ```
 ls -la /var/lib/cassandra/commitlog
@@ -229,12 +239,13 @@ ls -la /var/lib/cassandra/commitlog
 ```
 
 ```
-grep --text IVONE /var/lib/cassandra/commitlog/[O_COMMITLOG_MAIS_RECENTE]
+grep --text IVONE $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) | more
 
 ```
 
 ```
-hexdump -C /var/lib/cassandra/commitlog/[O_COMMITLOG_MAIS_RECENTE] | grep IVONE
+hexdump -C $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) | grep IVONE
+
 ```
 
 4. nodetool flush
@@ -276,7 +287,7 @@ drwxr-xr-x 5 cassandra cassandra 4096 Nov 23 13:42 ..
 
 4. Inspecionando `nb-2-big-Data.db`
 ```
-cat $CLIENTE_DATAFILE_PATH/nb-2-big-Data.db
+hexdump -C $CLIENTE_DATAFILE_PATH/nb-2-big-Data.db
 
 ```
 
@@ -300,6 +311,11 @@ root@8cc6dce87878:/# hexdump -C $CLIENTE_DATAFILE_PATH/nb-2-big-Data.db
 000000e0  47 4c 41 55 43 49 41 20  56 49 41 4e 41 20 44 55  |GLAUCIA VIANA DU|
 000000f0  54 52 41 01 a2 8d 56 1c                           |TRA...V.|
 000000f8
+```
+
+```
+cat $CLIENTE_DATAFILE_PATH/nb-2-big-Data.db
+
 ```
 
 ### Ordenação (o primeiro S de SSTable)
@@ -350,10 +366,12 @@ cqlsh -e "SELECT id_cliente, sobrenome FROM ks001.cliente WHERE id_cliente = '2b
 2. Commit log
 ```
 ls -la /var/lib/cassandra/commitlog/
+
 ```
 
 ```
-grep --text FRANCISCO /var/lib/cassandra/commitlog/[O_COMMIT_LOG_MAIS_RECENTE]
+grep --text FRANCISCO $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) 
+
 ```
 
 3. nodetool flush
