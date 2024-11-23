@@ -75,11 +75,11 @@ echo $CLIENTE_DATAFILE_PATH
 1. Inserindo primeiro lote de registros
 ```
 cqlsh -e "
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b162060', '01010101011', 'MARIVALDA KANAMARY');
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b16242a', '02020202022', 'JUCILENE MOREIRA CRUZ');
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b16256a', '03030303033', 'GRACIMAR BRASIL GUERRA');
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b16353c', '04040404044', 'ALDENORA VIANA MOREIRA');
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b1636ae', '05050505055', 'VERA LUCIA RODRIGUES SENA');"
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b162060', '01010101011', 'MARIVALDA', 'KANAMARY');
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b16242a', '02020202022', 'JUCILENE', 'MOREIRA CRUZ');
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b16256a', '03030303033', 'GRACIMAR', 'BRASIL GUERRA');
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b16353c', '04040404044', 'ALDENORA', 'VIANA MOREIRA');
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b1636ae', '05050505055', 'VERA', 'LUCIA RODRIGUES SENA');"
 
 ```
 
@@ -187,11 +187,11 @@ cat $CLIENTE_DATAFILE_PATH/nb-1-big-Data.db
 1. Inserindo primeiro lote de registros
 ```
 cqlsh -e "
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b16396a', '06060606066', 'IVONE GLAUCIA VIANA DUTRA');
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b163bcc', '07070707077', 'LUCILIA ROSA LIMA PEREIRA');
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b163cda', '08080808088', 'FRANCISCA SANDRA FEITOSA');
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b163dde', '09090909099', 'BRUNA DE BRITO PAIVA');
-insert into ks001.cliente(id_cliente, cpf, nome) VALUES('2b163ed8', '12312312312', 'LUCILENE PAULO BARBOSA');"
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b16396a', '06060606066', 'IVONE', 'GLAUCIA VIANA DUTRA');
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b163bcc', '07070707077', 'LUCILIA', 'ROSA LIMA PEREIRA');
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b163cda', '08080808088', 'FRANCISCA', 'SANDRA FEITOSA');
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b163dde', '09090909099', 'BRUNA', 'DE BRITO PAIVA');
+insert into ks001.cliente(id_cliente, cpf, nome, sobrenome) VALUES('2b163ed8', '12312312312', 'LUCILENE', 'PAULO BARBOSA');"
 
 ```
 
