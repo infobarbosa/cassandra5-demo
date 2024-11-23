@@ -183,12 +183,13 @@ cqlsh -e "
 
 ```
 
+Conferindo:
 ```
 cqlsh -e "DESCRIBE TABLE ks001.pedido;"
 
 ```
 
-Conferindo:
+Output:
 ```
 root@7bc306de4e1b:/# cqlsh -e "DESCRIBE TABLE ks001.pedido;"
 
@@ -228,6 +229,7 @@ VALUES (123, '2b2b2b2b', '2023-02-01', 30.00, 'Rua Cassandra, No.9042, Bairro No
 
 ```
 
+Conferindo:
 ```
 cqlsh -e "select * from ks001.pedido;"
 
