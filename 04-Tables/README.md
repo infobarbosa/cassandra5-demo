@@ -9,9 +9,11 @@ Nesse laboratório vamos trabalhar com tabelas do Cassandra.
 ```
 cqlsh -e "
 CREATE TABLE ks001.cliente(
-    id_cliente text PRIMARY KEY, 
-    cpf        text, 
-    nome       text
+    id_cliente  text PRIMARY KEY, 
+    cpf         text, 
+    nome        text, 
+    sobrenome   text, 
+    email       text
 );"
 
 ```
@@ -27,7 +29,9 @@ O output deve ser algo assim:
 CREATE TABLE ks001.cliente (
     id_cliente text PRIMARY KEY,
     cpf text,
-    nome text
+    email text,
+    nome text,
+    sobrenome text
 ) WITH additional_write_policy = '99p'
     AND allow_auto_snapshot = true
     AND bloom_filter_fp_chance = 0.01
@@ -47,17 +51,18 @@ CREATE TABLE ks001.cliente (
     AND min_index_interval = 128
     AND read_repair = 'BLOCKING'
     AND speculative_retry = '99p';
+
 ```
 
 ### INSERT
 ```
 cqlsh -e "
-INSERT INTO ks001.cliente(id_cliente, cpf, nome) 
-VALUES ('1a1a1a1a', '11111111111', 'marcelo barbosa');"
+INSERT INTO ks001.cliente(id_cliente, cpf, nome, sobrenome, email) 
+VALUES ('1a1a1a1a', '11111111111', 'marcelo', 'barbosa', 'infobarbosa@gmail.com');"
 
 cqlsh -e "
-INSERT INTO ks001.cliente(id_cliente, cpf, nome) 
-VALUES ('2b2b2b2b', '22222222222', 'juscelino kubitschek');"
+INSERT INTO ks001.cliente(id_cliente, cpf, nome, sobrenome, email) 
+VALUES ('2b2b2b2b', '22222222222', 'juscelino', 'kubitschek', 'kubitschek@gmail.com');"
 
 ```
 
@@ -69,14 +74,12 @@ cqlsh -e "SELECT * FROM ks001.cliente;"
 
 Output:
 ```
-root@7bc306de4e1b:/# cqlsh -e "SELECT * FROM ks001.cliente;"
 
- id_cliente | cpf         | nome
-------------+-------------+----------------------
-   1a1a1a1a | 11111111111 |      marcelo barbosa
-   2b2b2b2b | 22222222222 | juscelino kubitschek
+ id_cliente | cpf         | email                 | nome      | sobrenome
+------------+-------------+-----------------------+-----------+------------
+   1a1a1a1a | 11111111111 | infobarbosa@gmail.com |   marcelo |    barbosa
+   2b2b2b2b | 22222222222 |  kubitschek@gmail.com | juscelino | kubitschek
 
-(2 rows)
 ```
 
 ##### Busca pela chave
@@ -90,16 +93,9 @@ WHERE id_cliente = '1a1a1a1a';"
 
 Output:
 ```
-root@7bc306de4e1b:/# cqlsh -e "
-> SELECT * 
-> FROM ks001.cliente 
-> WHERE id_cliente = '1a1a1a1a';"
-
- id_cliente | cpf         | nome
-------------+-------------+-----------------
-   1a1a1a1a | 11111111111 | marcelo barbosa
-
-(1 rows)
+ id_cliente | cpf         | email                 | nome    | sobrenome
+------------+-------------+-----------------------+---------+-----------
+   1a1a1a1a | 11111111111 | infobarbosa@gmail.com | marcelo |   barbosa
 ```
 
 ##### Busca por um campo não-chave
@@ -107,7 +103,7 @@ root@7bc306de4e1b:/# cqlsh -e "
 cqlsh -e "
 SELECT * 
 FROM ks001.cliente 
-WHERE nome = 'marcelo barbosa';"
+WHERE nome = 'marcelo';"
 
 ```
 
@@ -120,7 +116,7 @@ Output:
 ```
 cqlsh -e "
 UPDATE ks001.cliente 
-SET nome = 'marcelo b.' 
+SET sobrenome = 'almeida' 
 WHERE id_cliente = '1a1a1a1a';"
 
 ```
@@ -136,16 +132,9 @@ WHERE id_cliente = '1a1a1a1a';"
 
 Output:
 ```
-root@7bc306de4e1b:/# cqlsh -e "
-> SELECT * 
-> FROM ks001.cliente 
-> WHERE id_cliente = '1a1a1a1a';"
-
- id_cliente | cpf         | nome
-------------+-------------+------------
-   1a1a1a1a | 11111111111 | marcelo b.
-
-(1 rows)
+ id_cliente | cpf         | email                 | nome    | sobrenome
+------------+-------------+-----------------------+---------+-----------
+   1a1a1a1a | 11111111111 | infobarbosa@gmail.com | marcelo |   almeida
 ```
 
 ### DELETE
@@ -167,13 +156,8 @@ WHERE id_cliente = '1a1a1a1a';"
 
 Output:
 ```
-root@7bc306de4e1b:/# cqlsh -e "
-> SELECT * 
-> FROM ks001.cliente 
-> WHERE id_cliente = '1a1a1a1a';"
-
- id_cliente | cpf | nome
-------------+-----+------
+ id_cliente | cpf | email | nome | sobrenome
+------------+-----+-------+------+-----------
 
 
 (0 rows)
@@ -289,13 +273,12 @@ cqlsh -e "SELECT * FROM ks001.cliente;"
 
 Output:
 ```
-root@7bc306de4e1b:/# cqlsh -e "SELECT * FROM ks001.cliente;"
-
- id_cliente | cpf | nome
-------------+-----+------
+ id_cliente | cpf | email | nome | sobrenome
+------------+-----+-------+------+-----------
 
 
 (0 rows)
+
 ```
 
 ### DROP TABLE
