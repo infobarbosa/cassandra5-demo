@@ -27,6 +27,27 @@ docker exec -it cassandra-database nodetool ring
 
 Output:
 ```
+Datacenter: datacenter1
+==========
+Address           Rack        Status State   Load            Owns                Token
+                                                                                 8170034754120362381
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   -8686704767075290596
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   -7067681471378247298
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   -6089536018862133223
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   -4310901718038546094
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   -3214859817803607805
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   -2123562707111395545
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   -1279186059620233789
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   161082170282349449
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   1232582786622382262
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   2250434191364809277
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   3068106123977160072
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   4143862005202739611
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   4879777697913633252
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   5959150505361234910
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   7202670511041826882
+172.16.0.11       RAC1        Up     Normal  538.24 KiB      ?                   8170034754120362381
+
 ```
 
 ##### `nodetool describering`
@@ -37,12 +58,48 @@ docker exec -it cassandra-database nodetool describering -- ks001
 
 Output:
 ```
+Schema Version:131fd63b-db2a-3491-8317-11850f185784
+TokenRange:
+	TokenRange(start_token:3068106123977160072, end_token:4143862005202739611, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:5959150505361234910, end_token:7202670511041826882, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:8170034754120362381, end_token:-8686704767075290596, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-7067681471378247298, end_token:-6089536018862133223, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:4143862005202739611, end_token:4879777697913633252, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-3214859817803607805, end_token:-2123562707111395545, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:2250434191364809277, end_token:3068106123977160072, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-4310901718038546094, end_token:-3214859817803607805, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:7202670511041826882, end_token:8170034754120362381, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:1232582786622382262, end_token:2250434191364809277, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:4879777697913633252, end_token:5959150505361234910, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-6089536018862133223, end_token:-4310901718038546094, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:161082170282349449, end_token:1232582786622382262, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-1279186059620233789, end_token:161082170282349449, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-2123562707111395545, end_token:-1279186059620233789, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-8686704767075290596, end_token:-7067681471378247298, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+
 ```
 
 Agora um select para entendermos onde cada registro está:
 ```
 docker exec -it cassandra-database cqlsh -e "select id_cliente, token(id_cliente), nome from ks001.cliente;"
 
+```
+
+Output:
+```
+ id_cliente | system.token(id_cliente) | nome
+------------+--------------------------+-----------
+   2b163cda |     -8543095953418148456 | FRANCISCA
+   2b163ed8 |     -5699046624560118549 |  LUCILENE
+   2b163dde |     -5570112041222660315 |     BRUNA
+   2b163bcc |     -5038845464850628004 |   LUCILIA
+   2b1636ae |     -4846341449078699481 |      VERA
+   2b16242a |     -4461337310647205397 |  JUCILENE
+   2b16353c |     -3218952037653612748 |  ALDENORA
+   2b162060 |      -754340186604780055 | MARIVALDA
+   2b16396a |      6124063227111369309 |     IVONE
+
+(9 rows)
 ```
 
 ---
@@ -87,8 +144,16 @@ docker exec -it cassandra-database nodetool status
 
 Output:
 ```
-INCLUIR AQUI ETAPA UJ (UP-JOINNING)
+Datacenter: datacenter1
+=======================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address      Load        Tokens  Owns  Host ID                               Rack
+UJ  172.16.0.12  30.9 KiB    16      ?     2c7d204b-8375-4ee1-b2c2-bcda888f3cfb  RAC1
+UN  172.16.0.11  538.24 KiB  16      ?     770924c2-9e0b-4cea-89f5-f9a3edebb4bd  RAC1
 ```
+
+Perceba que o node `172.16.0.12` tem o status `UJ` (Up & Joining). Quando a inicialização terminar o status será alterado para `UN` (Up & Normal).
 
 ##### `nodetool ring`
 ```
