@@ -5,11 +5,14 @@ Github: [infobarbosa](https://github.com/infobarbosa)
 
 Cassandra em cluster
 
-Atenção! Cuidado para executar os comandos em ordem e apenas uma vez sob o risco de ter de reiniciar o laboratório.<br>
-Exceções a essa regra serão apontadas pelo professor.
 
 ### Objetivo
 Executar um cluster de 2 ou mais nós (ou nodes) e observar os principais aspectos operacionais do mesmo.
+
+# Atenção!
+> 1. A partir daqui o laboratório será executado ainda no terminal, mas fora do docker. Digite `Control+D` (uma única vez para sair da instância docker.)
+> 2. Cuidado para executar os comandos em ordem e apenas uma vez sob o risco de ter de reiniciar o laboratório.
+> 3. Exceções as essas duas regras serão apontadas pelo professor.
 
 # Preparação
 Antes de inicializar o cluster vamos fazer algumas consultas interessantes.
