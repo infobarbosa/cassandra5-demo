@@ -302,7 +302,7 @@ root@8cc6dce87878:/# hexdump -C $CLIENTE_DATAFILE_PATH/nb-2-big-Data.db
 000000f8
 ```
 
-### Ordenação (o prmeiro S de SSTable)
+### Ordenação (o primeiro S de SSTable)
 Percebeu a diferença entre o output do **commit log** versus o output do arquivo de dados?
 
 ```
