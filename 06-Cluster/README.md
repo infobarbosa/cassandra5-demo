@@ -345,7 +345,6 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b162060';"
 
-
 # 2. Jucilene
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -411,7 +410,121 @@ where id_cliente='2b163ed8';"
 
 ```
 
-## Ciclo 6
+## Ciclo 7 (Ajustando o replication factor)
+Nesse ciclo vamos resolver o problema de disponibilidade incrementando o fator de replicação da keyspace `ks001`.
+
+1. Reiniciando o container `cassandra-database`
+```
+docker start cassandra-database
+```
+
+Checando:
+```
+docker exec -it cassandra-node-2 nodetool status
+```
+Aguarde o status **UN** (Up & Normal)
+
+2. Ajustando o fator de replicação par 2
+
+```
+docker exec -it cassandra-database \
+cqlsh -e "
+  ALTER KEYSPACE ks001
+      WITH REPLICATION = {
+          'class' : 'SimpleStrategy', 
+          'replication_factor':2  
+      };"
+```
+
+Checando:
+```
+docker exec -it cassandra-database \
+cqlsh -e "DESCRIBE KEYSPACE ks001;"
+```
+
+Nos logs do cassandra será possível encontrar uma mensagem assim:
+```
+INFO  [Native-Transport-Requests-1] 2024-11-23 22:15:09,808 Keyspace.java:379 - Creating replication strategy ks001 params KeyspaceParams{durable_writes=true, replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=2}}
+```
+
+3. Interrompendo novamente
+```
+docker stop cassandra-node-2
+```
+
+Checando:
+```
+docker exec -it cassandra-database nodetool status
+```
+
+4. Executando a checagem individual novamente
+```
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b162060';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b16242a';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b16256a';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b16353c';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b1636ae';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b16396a';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b163bcc';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b163cda';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b163dde';"
+
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b163ed8';"
+
+```
+
+---
+
+## Ciclo 8
 ```
 docker exec -it cassandra-database \
 cqlsh -e "
@@ -500,4 +613,5 @@ docker run -d \
 # Parabéns! 
 
 Você concluiu com sucesso a sessão de configuração e operação de um cluster Cassandra. <br>
+Entendeu como sistemas de altíssima disponibilidade se comportam em situações de falha. <br>
 Bom trabalho!
