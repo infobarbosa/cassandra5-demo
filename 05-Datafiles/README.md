@@ -178,6 +178,8 @@ cat $CLIENTE_DATAFILE_PATH/nb-1-big-Data.db
 
 ```
 
+---
+
 # Ciclo 2
 
 ### `cqlsh` INSERT 2
@@ -303,6 +305,8 @@ root@8cc6dce87878:/# hexdump -C $CLIENTE_DATAFILE_PATH/nb-2-big-Data.db
 ### Ordenação
 Percebeu a diferença entre o output do **commit log** versus o output do arquivo de dados?
 
+---
+
 # Ciclo 3
 
 ### `cqlsh` UPDATE 1
@@ -392,6 +396,8 @@ root@8cc6dce87878:/#
 hd -C $CLIENTE_DATAFILE_PATH/nb-3-big-Data.db
 
 ```
+
+---
 
 # Ciclo 4
 
@@ -518,6 +524,8 @@ cat $CLIENTE_DATAFILE_PATH/nb-5-big-Data.db
 
 Ou seja, a operação de compactação reuniu o conteúdo de 4 sstables em uma só.
 
+---
+
 ## Ciclo 5
 
 ### `cqlsh` DELETE
@@ -543,7 +551,7 @@ cqlsh --execute \
 
 ```
 
-Checando os arquivos:
+3. Checando os arquivos:
 ```
 ls -la $CLIENTE_DATAFILE_PATH
 
@@ -559,7 +567,7 @@ ls -la $CLIENTE_DATAFILE_PATH
 
 ```
 
-Inspecione o conteúdo da sstable gerada `nb-XX-big-Data.db`:
+4. Inspecione o conteúdo da sstable gerada `nb-XX-big-Data.db`:
 ```
 cat $CLIENTE_DATAFILE_PATH/nb-6-big-Data.db
 
