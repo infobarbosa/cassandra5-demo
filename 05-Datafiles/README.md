@@ -302,8 +302,30 @@ root@8cc6dce87878:/# hexdump -C $CLIENTE_DATAFILE_PATH/nb-2-big-Data.db
 000000f8
 ```
 
-### Ordenação
+### Ordenação (o prmeiro S de SSTable)
 Percebeu a diferença entre o output do **commit log** versus o output do arquivo de dados?
+
+```
+cqlsh -e "select id_cliente, token(id_cliente), nome from ks001.cliente"
+
+```
+
+Output:
+```
+root@8cc6dce87878:/# cqlsh -e "select id_cliente, token(id_cliente), nome from ks001.cliente"
+
+ id_cliente | system.token(id_cliente) | nome
+------------+--------------------------+---------------------------
+   2b163cda |     -8543095953418148456 |  FRANCISCA SANDRA FEITOSA
+   2b163ed8 |     -5699046624560118549 |    LUCILENE PAULO BARBOSA
+   2b163dde |     -5570112041222660315 |      BRUNA DE BRITO PAIVA
+   2b163bcc |     -5038845464850628004 | LUCILIA ROSA LIMA PEREIRA
+   2b1636ae |     -4846341449078699481 | VERA LUCIA RODRIGUES SENA
+   2b16242a |     -4461337310647205397 |     JUCILENE MOREIRA CRUZ
+   2b16353c |     -3218952037653612748 |    ALDENORA VIANA MOREIRA
+   2b162060 |      -754340186604780055 |        MARIVALDA KANAMARY
+   2b16396a |      6124063227111369309 | IVONE GLAUCIA VIANA DUTRA
+```
 
 ---
 
