@@ -167,6 +167,7 @@ docker exec -it cassandra-database nodetool describering -- ks001
 
 ```
 
+Perceba que desta vez o output é bem maior, o cluster está redistribuindo os tokens de forma balanceada.<br>
 Output:
 ```
 Schema Version:e35dd15e-7d47-3e37-b8df-aa9997e73c3f
@@ -192,7 +193,11 @@ update ks001.cliente set email='jucilene.moreira@example.com' where id_cliente='
 
 Checando:
 ```
-docker exec -it cassandra-database cqlsh -e "SELECT id_cliente, nome, email FROM ks001.cliente WHERE id_cliente in('2b162060', '2b16242a');"
+docker exec -it cassandra-database \
+cqlsh -e "
+SELECT id_cliente, nome, email 
+FROM ks001.cliente 
+WHERE id_cliente in('2b162060', '2b16242a');"
 ```
 
 ```
@@ -216,7 +221,11 @@ update ks001.cliente set email='aldenora.viana@example.com' where id_cliente='2b
 
 Checando:
 ```
-docker exec -it cassandra-database cqlsh -e "SELECT id_cliente, nome, email FROM ks001.cliente WHERE id_cliente in('2b16256a', '2b16353c');"
+docker exec -it cassandra-database \
+cqlsh -e "
+SELECT id_cliente, nome, email 
+FROM ks001.cliente 
+WHERE id_cliente in('2b16256a', '2b16353c');"
 ```
 
 ```
@@ -232,13 +241,19 @@ docker exec -it cassandra-node-2 nodetool flush
 ## Ciclo 3
 
 ```
+docker exec -it cassandra-database \
+cqlsh -e "
 update ks001.cliente set email='vera.sena@example.com' where id_cliente='2b1636ae';
-update ks001.cliente set email='ivone.dutra@example.com' where id_cliente='2b16396a';
+update ks001.cliente set email='ivone.dutra@example.com' where id_cliente='2b16396a';"
 ```
 
 Checando:
 ```
-docker exec -it cassandra-database cqlsh -e "SELECT id_cliente, nome, email FROM ks001.cliente WHERE id_cliente in('2b1636ae', '2b16396a');"
+docker exec -it cassandra-database \
+cqlsh -e "
+SELECT id_cliente, nome, email 
+FROM ks001.cliente 
+WHERE id_cliente in('2b1636ae', '2b16396a');"
 ```
 
 ```
@@ -253,13 +268,19 @@ docker exec -it cassandra-node-2 nodetool flush
 
 ## Ciclo 4
 ```
+docker exec -it cassandra-database \
+cqlsh -e "
 update ks001.cliente set email='lucilia.pereira@example.com' where id_cliente='2b163bcc';
-update ks001.cliente set email='francisca.feitosa@example.com' where id_cliente='2b163cda';
+update ks001.cliente set email='francisca.feitosa@example.com' where id_cliente='2b163cda';"
 ```
 
 Checando:
 ```
-docker exec -it cassandra-database cqlsh -e "SELECT id_cliente, nome, email FROM ks001.cliente WHERE id_cliente in('2b163bcc', '2b163cda');"
+docker exec -it cassandra-database \
+cqlsh -e "
+SELECT id_cliente, nome, email 
+FROM ks001.cliente 
+WHERE id_cliente in('2b163bcc', '2b163cda');"
 ```
 
 ```
@@ -274,13 +295,19 @@ docker exec -it cassandra-node-2 nodetool flush
 
 ## Ciclo 5
 ```
+docker exec -it cassandra-database \
+cqlsh -e "
 update ks001.cliente set email='bruna.paiva@example.com' where id_cliente='2b163dde';
-update ks001.cliente set email='lucilene.barbosa@example.com' where id_cliente='2b163ed8';
+update ks001.cliente set email='lucilene.barbosa@example.com' where id_cliente='2b163ed8';"
 ```
 
 Checando:
 ```
-docker exec -it cassandra-database cqlsh -e "SELECT id_cliente, nome, email FROM ks001.cliente WHERE id_cliente in('2b163dde', '2b163ed8');"
+docker exec -it cassandra-database \
+cqlsh -e "
+SELECT id_cliente, nome, email 
+FROM ks001.cliente 
+WHERE id_cliente in('2b163dde', '2b163ed8');"
 ```
 
 ```
@@ -294,8 +321,125 @@ docker exec -it cassandra-node-2 nodetool flush
 ``` 
 
 ## Ciclo 6
+Agora vamos interromper o container `cassandra-database` e testar a disponibilidade dos dados.
 ```
-docker exec -it cassandra-database cqlsh -e "
+docker stop cassandra-database
+```
+
+Checando:
+```
+docker exec -it cassandra-node-2 nodetool status
+```
+
+Agora vamos validar, um a um, os registros que inserimos anteriormente.<br>
+Perceba que alguns estarão disponíveis enquanto outros retornarão a seguinte mensagem:
+```
+<stdin>:1:NoHostAvailable: ('Unable to complete the operation against any hosts', {<Host: 127.0.0.1:9042 datacenter1>: Unavailable('Error from server: code=1000 [Unavailable exception] message="Cannot achieve consistency level ONE" info={\'consistency\': \'ONE\', \'required_replicas\': 1, \'alive_replicas\': 0}')})
+```
+
+1. Marivalda
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b162060';"
+
+```
+
+2. Jucilene
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b16242a';"
+
+```
+
+3. Gracimar
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b16256a';"
+
+```
+
+4. Aldenora
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b16353c';"
+
+```
+
+5. Vera
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b1636ae';"
+
+```
+
+6. Ivone
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b16396a';"
+
+```
+
+7. Lucilia
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b163bcc';"
+
+```
+
+8. Francisca
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b163cda';"
+```
+
+9. Bruna
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b163dde';"
+
+```
+
+10. Lucilene
+```
+docker exec -it cassandra-node-2 \
+cqlsh -e "
+select id_cliente, nome 
+from ks001.cliente 
+where id_cliente='2b163ed8';"
+
+```
+
+## Ciclo 6
+```
+docker exec -it cassandra-database \
+cqlsh -e "
 insert into ks001.cliente(id_cliente, cpf, nome, sobrenome, email) VALUES('2b162061', '06060606066', 'JOÃO', 'SILVA', 'joao.silva@example.com');
 insert into ks001.cliente(id_cliente, cpf, nome, sobrenome, email) VALUES('2b162062', '07070707077', 'MARIA', 'FERREIRA', 'maria.ferreira@example.com');
 insert into ks001.cliente(id_cliente, cpf, nome, sobrenome, email) VALUES('2b162063', '08080808088', 'ANTONIO', 'SANTOS', 'antonio.santos@example.com');
