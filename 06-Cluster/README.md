@@ -23,6 +23,7 @@ Checando a distribuição atual de tokens.
 ##### `nodetool ring`
 ```
 docker exec -it cassandra-database nodetool ring
+
 ```
 
 Output:
@@ -189,6 +190,7 @@ TokenRange:
 docker exec -it cassandra-database cqlsh -e "
 update ks001.cliente set email='marivalda.kanamary@example.com' where id_cliente='2b162060';
 update ks001.cliente set email='jucilene.moreira@example.com' where id_cliente='2b16242a';"
+
 ```
 
 Checando:
@@ -198,6 +200,7 @@ cqlsh -e "
 SELECT id_cliente, nome, email 
 FROM ks001.cliente 
 WHERE id_cliente in('2b162060', '2b16242a');"
+
 ```
 
 ```
@@ -219,6 +222,7 @@ docker exec -it cassandra-database \
 cqlsh -e "
 update ks001.cliente set email='gracimar.brasil@example.com' where id_cliente='2b16256a';
 update ks001.cliente set email='aldenora.viana@example.com' where id_cliente='2b16353c';"
+
 ```
 
 Checando:
@@ -228,6 +232,7 @@ cqlsh -e "
 SELECT id_cliente, nome, email 
 FROM ks001.cliente 
 WHERE id_cliente in('2b16256a', '2b16353c');"
+
 ```
 
 ```
@@ -247,6 +252,7 @@ docker exec -it cassandra-database \
 cqlsh -e "
 update ks001.cliente set email='vera.sena@example.com' where id_cliente='2b1636ae';
 update ks001.cliente set email='ivone.dutra@example.com' where id_cliente='2b16396a';"
+
 ```
 
 Checando:
@@ -256,6 +262,7 @@ cqlsh -e "
 SELECT id_cliente, nome, email 
 FROM ks001.cliente 
 WHERE id_cliente in('2b1636ae', '2b16396a');"
+
 ```
 
 ```
@@ -274,6 +281,7 @@ docker exec -it cassandra-database \
 cqlsh -e "
 update ks001.cliente set email='lucilia.pereira@example.com' where id_cliente='2b163bcc';
 update ks001.cliente set email='francisca.feitosa@example.com' where id_cliente='2b163cda';"
+
 ```
 
 Checando:
@@ -283,6 +291,7 @@ cqlsh -e "
 SELECT id_cliente, nome, email 
 FROM ks001.cliente 
 WHERE id_cliente in('2b163bcc', '2b163cda');"
+
 ```
 
 ```
@@ -301,6 +310,7 @@ docker exec -it cassandra-database \
 cqlsh -e "
 update ks001.cliente set email='bruna.paiva@example.com' where id_cliente='2b163dde';
 update ks001.cliente set email='lucilene.barbosa@example.com' where id_cliente='2b163ed8';"
+
 ```
 
 Checando:
@@ -310,6 +320,7 @@ cqlsh -e "
 SELECT id_cliente, nome, email 
 FROM ks001.cliente 
 WHERE id_cliente in('2b163dde', '2b163ed8');"
+
 ```
 
 ```
@@ -326,11 +337,13 @@ docker exec -it cassandra-node-2 nodetool flush
 Agora vamos interromper o container `cassandra-database` e testar a disponibilidade dos dados.
 ```
 docker stop cassandra-database
+
 ```
 
 Checando:
 ```
 docker exec -it cassandra-node-2 nodetool status
+
 ```
 
 Agora vamos validar, um a um, os registros que inserimos anteriormente.<br>
@@ -347,6 +360,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b162060';"
 
+```
+
+```
 # 2. Jucilene
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -354,6 +370,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b16242a';"
 
+```
+
+```
 # 3. Gracimar
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -361,6 +380,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b16256a';"
 
+```
+
+```
 # 4. Aldenora
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -368,6 +390,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b16353c';"
 
+```
+
+```
 #5. Vera
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -375,6 +400,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b1636ae';"
 
+```
+
+```
 # 6. Ivone
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -382,6 +410,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b16396a';"
 
+```
+
+```
 # 7. Lucilia
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -389,6 +420,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b163bcc';"
 
+```
+
+```
 #8. Francisca
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -396,6 +430,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b163cda';"
 
+```
+
+```
 # 9. Bruna
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -403,6 +440,9 @@ select id_cliente, nome
 from ks001.cliente 
 where id_cliente='2b163dde';"
 
+```
+
+```
 # 10. Lucilene
 docker exec -it cassandra-node-2 \
 cqlsh -e "
@@ -418,11 +458,13 @@ Nesse ciclo vamos resolver o problema de disponibilidade incrementando o fator d
 1. Reiniciando o container `cassandra-database`
 ```
 docker start cassandra-database
+
 ```
 
 Checando:
 ```
 docker exec -it cassandra-node-2 nodetool status
+
 ```
 Aguarde o status **UN** (Up & Normal)
 
@@ -436,12 +478,20 @@ cqlsh -e "
           'class' : 'SimpleStrategy', 
           'replication_factor':2  
       };"
+
+```
+
+Output:
+```
+Warnings :
+When increasing replication factor you need to run a full (-full) repair to distribute the data.
 ```
 
 Checando:
 ```
 docker exec -it cassandra-database \
 cqlsh -e "DESCRIBE KEYSPACE ks001;"
+
 ```
 
 Nos logs do cassandra será possível encontrar uma mensagem assim:
@@ -449,73 +499,108 @@ Nos logs do cassandra será possível encontrar uma mensagem assim:
 INFO  [Native-Transport-Requests-1] 2024-11-23 22:15:09,808 Keyspace.java:379 - Creating replication strategy ks001 params KeyspaceParams{durable_writes=true, replication=ReplicationParams{class=org.apache.cassandra.locator.SimpleStrategy, replication_factor=2}}
 ```
 
-3. Interrompendo novamente
+3. Full repair
+```
+docker exec -it cassandra-database \
+nodetool repair -full ks001
+
+```
+
+4. Interrompendo novamente
 ```
 docker stop cassandra-node-2
+
 ```
 
 Checando:
 ```
 docker exec -it cassandra-database nodetool status
+
 ```
 
-4. Executando a checagem individual novamente
+5. Executando a checagem individual novamente
 ```
-
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b162060';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b16242a';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b16256a';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b16353c';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b1636ae';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b16396a';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b163bcc';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b163cda';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
 from ks001.cliente 
 where id_cliente='2b163dde';"
 
+```
+
+```
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome 
