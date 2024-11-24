@@ -110,13 +110,32 @@ ls -la /var/lib/cassandra/commitlog
 ```
 
 Vamos analisar o arquivo de commit log mais recente:
+
+**Marivalda**
+```
+grep --text MARIVALDA $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) 
+
+```
+
 ```
 hexdump -C $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) | grep MARIVALDA
 
 ```
 
+**Jucilene**
+```
+grep --text JUCILENE $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) 
+
+```
+
 ```
 hexdump -C $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) | grep JUCILENE
+
+```
+
+**Gracimar**
+```
+grep --text GRACIMAR $(eval ls -rtd /var/lib/cassandra/commitlog/*.log | tail -n 1) 
 
 ```
 
