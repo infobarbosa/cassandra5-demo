@@ -11,9 +11,20 @@ Vamos inserir, atualizar e deletar diversos registros na nossa tabela `cliente`.
 
 # Preparação
 ### Instalação do `hexdump`
+1. Update
 ```
 apt update -y
+
+```
+
+2. Upgrade
+```
 apt upgrade -y
+
+```
+
+3. bsdmainutils
+```
 apt install -y bsdmainutils
 
 ```
