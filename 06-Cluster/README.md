@@ -215,8 +215,10 @@ Observe os datafiles nos dois nodes.
 ## Ciclo 2
 
 ```
+docker exec -it cassandra-database \
+cqlsh -e "
 update ks001.cliente set email='gracimar.brasil@example.com' where id_cliente='2b16256a';
-update ks001.cliente set email='aldenora.viana@example.com' where id_cliente='2b16353c';
+update ks001.cliente set email='aldenora.viana@example.com' where id_cliente='2b16353c';"
 ```
 
 Checando:
