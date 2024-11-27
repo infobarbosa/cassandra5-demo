@@ -82,7 +82,10 @@ TokenRange:
 
 Agora um select para entendermos onde cada registro está:
 ```
-docker exec -it cassandra-database cqlsh -e "select id_cliente, token(id_cliente), nome from ks001.cliente;"
+docker exec -it cassandra-database \
+cqlsh -e "
+select id_cliente, token(id_cliente), nome 
+from ks001.cliente;"
 
 ```
 
