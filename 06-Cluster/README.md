@@ -332,7 +332,7 @@ TokenRange:
     ...
 ```
 
-# Novas operações de escrita
+# Laboratório de disponibilidade
 
 ## Ciclo 1
 Checando as pessoas que vamos usar como exemplo neste lab.
