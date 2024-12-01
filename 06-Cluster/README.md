@@ -225,7 +225,9 @@ docker exec -it cassandra-database nodetool ring
 
 ```
 
-Output:
+Outputs:
+
+Inicialmente o output estará assim, perceba a coluna "Owns".
 ```
 barbosa: cassandra5-demo $ docker exec -it cassandra-database nodetool ring
 
@@ -266,6 +268,47 @@ Address           Rack        Status State   Load            Owns               
 172.16.0.11       RAC1        Up     Normal  109.15 KiB      100.00%             7953577465454342373
 172.16.0.12       RAC1        Up     Joining 30.9 KiB        ?                   8509458500371266309
 172.16.0.11       RAC1        Up     Normal  109.15 KiB      100.00%             8920941708532877872
+```
+
+Após a realocação de tokens, o output estará assim:
+```
+Datacenter: datacenter1
+==========
+Address           Rack        Status State   Load            Owns                Token
+                                                                                 8997019465155110187
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              -8887981190194815184
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              -8490658337846102393
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              -7830701312857398131
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              -7232237621900659304
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              -6852555860341284055
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              -6197936975225254937
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              -5771650473944125547
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              -5073921559517696926
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              -4421448647369447663
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              -3977879659282758637
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              -3364072130440489446
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              -2886582548590546377
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              -2042205901099384621
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              -1242377230438254337
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              -601937671196801382
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              16043360705398695
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              469562945143231430
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              1080384350478462091
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              1487414349885658445
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              2305086282498009240
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              2900388651458408490
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              3380842163723588779
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              4116757856434482420
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              4777452980971394519
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              5196130663882084078
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              5946407904150408898
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              6439650669562676050
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              6995531704479599986
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              7407014912641211549
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              7931444877271115406
+172.16.0.12       RAC1        Up     Normal  352.87 KiB      51.15%              8347082536842755286
+172.16.0.11       RAC1        Up     Normal  476.22 KiB      48.85%              8997019465155110187
+
 ```
 
 ##### `nodetool describering`
