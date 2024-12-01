@@ -390,7 +390,7 @@ Perceba que alguns estarão disponíveis enquanto outros retornarão a seguinte 
 ```
 
 ```
-# 1. Marivalda
+echo 1. Marivalda
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -400,7 +400,7 @@ where id_cliente='2b162060';"
 ```
 
 ```
-# 2. Jucilene
+echo 2. Jucilene
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -410,7 +410,7 @@ where id_cliente='2b16242a';"
 ```
 
 ```
-# 3. Gracimar
+echo 3. Gracimar
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -420,7 +420,7 @@ where id_cliente='2b16256a';"
 ```
 
 ```
-# 4. Aldenora
+echo 4. Aldenora
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -430,7 +430,7 @@ where id_cliente='2b16353c';"
 ```
 
 ```
-# 5. Vera
+echo 5. Vera
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -440,7 +440,7 @@ where id_cliente='2b1636ae';"
 ```
 
 ```
-# 6. Ivone
+echo 6. Ivone
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -450,7 +450,7 @@ where id_cliente='2b16396a';"
 ```
 
 ```
-# 7. Lucilia
+echo 7. Lucilia
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -460,7 +460,7 @@ where id_cliente='2b163bcc';"
 ```
 
 ```
-#8. José Antônio
+echo 8. José Antônio
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -470,7 +470,7 @@ where id_cliente='2b1656a4';"
 ```
 
 ```
-# 9. Fernanda Lopes
+echo 9. Fernanda Lopes
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -480,7 +480,7 @@ where id_cliente='2b166b86';"
 ```
 
 ```
-# 10. Roberto Carlos
+echo 10. Roberto Carlos
 docker exec -it cassandra-node-2 \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -567,7 +567,7 @@ docker exec -it cassandra-database nodetool status
 
 5. Executando a checagem individual novamente
 ```
-# 1. Marivalda
+echo 1. Marivalda
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -577,7 +577,7 @@ where id_cliente='2b162060';"
 ```
 
 ```
-# 2. Jucilene
+echo 2. Jucilene
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -587,7 +587,7 @@ where id_cliente='2b16242a';"
 ```
 
 ```
-# 3. Gracimar
+echo 3. Gracimar
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -597,7 +597,7 @@ where id_cliente='2b16256a';"
 ```
 
 ```
-# 4. Aldenora
+echo 4. Aldenora
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -607,7 +607,7 @@ where id_cliente='2b16353c';"
 ```
 
 ```
-# 5. Vera
+echo 5. Vera
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -617,7 +617,7 @@ where id_cliente='2b1636ae';"
 ```
 
 ```
-# 6. Ivone
+echo 6. Ivone
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -627,7 +627,7 @@ where id_cliente='2b16396a';"
 ```
 
 ```
-# 7. Lucilia
+echo 7. Lucilia
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -637,7 +637,7 @@ where id_cliente='2b163bcc';"
 ```
 
 ```
-#8. José Antônio
+echo 8. José Antônio
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo 
@@ -647,7 +647,7 @@ where id_cliente='2b1656a4';"
 ```
 
 ```
-# 9. Fernanda Lopes
+echo 9. Fernanda Lopes
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -657,7 +657,7 @@ where id_cliente='2b166b86';"
 ```
 
 ```
-# 10. Roberto Carlos
+echo 10. Roberto Carlos
 docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, nome_completo
@@ -666,11 +666,21 @@ where id_cliente='2b16727c';"
 
 ```
 
-
 ---
 
 ### Encerrando o cluster
-Por comodidade e também restrição de recursos de cpu e memória do nosso laboratório, vamos inicializar um cluster com apenas 2 nós.
+Para encerrar o cluster, primeiro removemos o node 2.
+```
+docker stop cassandra-node-2
+
+```
+
+```
+docker rm cassandra-node-2
+
+```
+
+Agora interrompemos o docker compose.
 ```
 docker compose -f ./cassandra5-demo/assets/scripts/standalone/compose.yaml down --remove-orphans
 
