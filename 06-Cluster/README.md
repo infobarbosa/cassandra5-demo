@@ -59,41 +59,24 @@ docker exec -it cassandra-database nodetool describering -- infobarbank
 
 Output:
 ```
-Schema Version:0b8effea-9d90-3efd-9f93-4b473f2e02a3
+Schema Version:c223a1cc-30c3-389e-bf5e-8a2a28d02a54
 TokenRange:
-	TokenRange(start_token:-4684010179333588614, end_token:-4257723678052459224, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:6291379776863060842, end_token:6710057459773750401, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-1850145334548823123, end_token:-1372655752698880054, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-7935797812662775105, end_token:-7374054394303148859, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-4257723678052459224, end_token:-3559994763626030603, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-8585734740975130006, end_token:-7935797812662775105, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:1529970156597065017, end_token:1983489741034897753, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-6316774516965731807, end_token:-5718310826008992980, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:4894768959615255102, end_token:5630684652326148743, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:5630684652326148743, end_token:6291379776863060842, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-5718310826008992980, end_token:-5338629064449617732, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:3819013078389675563, end_token:4414315447350074813, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:6710057459773750401, end_token:7460334700042075221, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:2594311146370128414, end_token:3001341145777324768, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-5338629064449617732, end_token:-4684010179333588614, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-2907521851477781340, end_token:-2463952863391092314, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:7953577465454342373, end_token:8509458500371266309, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-7374054394303148859, end_token:-6976731541954436068, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:911989124694864940, end_token:1529970156597065017, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-2463952863391092314, end_token:-1850145334548823123, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-9001372400546769886, end_token:-8585734740975130006, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:3001341145777324768, end_token:3819013078389675563, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:8920941708532877872, end_token:-9001372400546769886, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:7460334700042075221, end_token:7953577465454342373, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:4414315447350074813, end_token:4894768959615255102, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-528279105207718298, end_token:271549565453411984, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:1983489741034897753, end_token:2594311146370128414, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-1372655752698880054, end_token:-528279105207718298, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-6976731541954436068, end_token:-6316774516965731807, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:8509458500371266309, end_token:8920941708532877872, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:-3559994763626030603, end_token:-2907521851477781340, endpoints:[172.16.0.12], rpc_endpoints:[172.16.0.12], endpoint_details:[EndpointDetails(host:172.16.0.12, datacenter:datacenter1, rack:RAC1)])
-	TokenRange(start_token:271549565453411984, end_token:911989124694864940, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
-
+	TokenRange(start_token:3380842163723588779, end_token:4116757856434482420, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-601937671196801382, end_token:469562945143231430, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:1487414349885658445, end_token:2305086282498009240, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:7407014912641211549, end_token:8997019465155110187, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-7830701312857398131, end_token:-6852555860341284055, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-5073921559517696926, end_token:-3977879659282758637, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-3977879659282758637, end_token:-2886582548590546377, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-6852555860341284055, end_token:-5073921559517696926, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-2886582548590546377, end_token:-2042205901099384621, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:4116757856434482420, end_token:5196130663882084078, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:8997019465155110187, end_token:-7830701312857398131, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:6439650669562676050, end_token:7407014912641211549, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:2305086282498009240, end_token:3380842163723588779, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:-2042205901099384621, end_token:-601937671196801382, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:469562945143231430, end_token:1487414349885658445, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
+	TokenRange(start_token:5196130663882084078, end_token:6439650669562676050, endpoints:[172.16.0.11], rpc_endpoints:[172.16.0.11], endpoint_details:[EndpointDetails(host:172.16.0.11, datacenter:datacenter1, rack:RAC1)])
 ```
 
 Agora um select para entendermos onde cada registro está:
@@ -163,8 +146,9 @@ Output:
 (50 rows)
 ```
 
+Nesse laboratório vamos nos concentrar nessas pessoas especificamente:
 ```
-docker exec -it cassandra-node-2 \
+docker exec -it cassandra-database \
 cqlsh -e "
 select id_cliente, token(id_cliente), nome_completo 
 from infobarbank.cliente 
