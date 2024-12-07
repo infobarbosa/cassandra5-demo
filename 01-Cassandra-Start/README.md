@@ -6,9 +6,10 @@ Github: [infobarbosa](https://github.com/infobarbosa)
 Nesta sessão vamos inicializar uma instância stand-alone do Apache Cassandra.
 
 ## Clone do projeto
-Faça o clone do projeto com o seguinte comando:
+Caso ainda não tenha feito, faça o clone do projeto com o seguinte comando:
 ```
 git clone https://github.com/infobarbosa/cassandra5-demo.git
+
 ```
 
 ## Docker

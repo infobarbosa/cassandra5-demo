@@ -99,6 +99,21 @@ Ao ser criado, seu ambiente aparece no console do Cloud9
 
 ![img/018_cloud9_ide_aberta.png](img/018_cloud9_ide_aberta.png)
 
+## Configuração adicional
+
+### Clone do projeto
+Caso ainda não tenha feito, faça o clone do projeto com o seguinte comando:
+```
+git clone https://github.com/infobarbosa/cassandra5-demo.git
+
+```
+
+### Configuração de disco
+No terminal, execute o seguinte script para ajustar o espaço em disco do Cloud9
+```
+sh ./cassandra5-demo/assets/scripts/setup_cloud9_env.sh
+
+```
 
 # Parabéns! 
 Seu ambiente Cloud9 está pronto pra uso!
