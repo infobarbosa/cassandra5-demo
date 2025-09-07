@@ -5,47 +5,24 @@ Github: [infobarbosa](https://github.com/infobarbosa)
 
 Nesta sessão vamos inicializar uma instância stand-alone do Apache Cassandra.
 
-## Clone do projeto
-Caso ainda não tenha feito, faça o clone do projeto com o seguinte comando:
-```
-git clone https://github.com/infobarbosa/cassandra5-demo.git
-
-```
-
-## Docker
+## Arquivo docker compose
 Por simplicidade, vamos utilizar o Cassandra em um container baseado em *Docker*.<br>
-Na pasta [assets/scripts/standalone](../assets/scripts/standalone) está disponível um arquivo `compose.yaml` que contém os parâmetros de inicialização do container Docker.<br>
-Embora não seja escopo deste laboratório o entendimento detalhado do Docker, recomendo o estudo do arquivo `compose.yaml`.
-
+Baixe o script utilizando o comando:
 ```
-ls -la ./cassandra5-demo/assets/scripts/standalone/compose.yaml
+wget https://raw.githubusercontent.com/infobarbosa/cassandra5-demo/main/assets/scripts/standalone/compose.yaml
 
-```
-
-Output esperado:
-```
--rw-rw-r-- 1 ubuntu ubuntu 1274 Nov 20 15:56 ./cassandra5-demo/assets/scripts/standalone/compose.yaml
 ```
 
 Verifique o conteúdo do arquivo:
 ```
-cat ./cassandra5-demo/assets/scripts/standalone/compose.yaml
+cat ./compose.yaml
 
 ```
 
 ## Inicialização
 ```
-docker compose -f ./cassandra5-demo/assets/scripts/standalone/compose.yaml up -d
+docker compose up -d
 
-```
-
-Output esperado:
-```
-voclabs:~/environment $ docker compose -f ./cassandra5-demo/assets/scripts/standalone/compose.yaml up -d
-[+] Running 3/3
- ✔ Network cassandra-standalone_common_net  Created 
- ✔ Container cassandra-database             Healthy 
- ✔ Container cassandra-init                 Started 
 ```
 
 Para verificar se está tudo correto:
@@ -115,11 +92,6 @@ Sua instância Cassandra está pronta pra uso!
 ### Encerrando o Cassandra
 Caso você queira reiniciar o laboratório em uma instância totalmente nova ou mesmo eliminar para higienizar o ambiente, basta executar o comando abaixo:
 ```
-docker compose -f ./cassandra5-demo/assets/scripts/standalone/compose.yaml down
+docker compose down
 
 ```
-
-Output esperado:
-```
-
- ```
