@@ -6,27 +6,31 @@ Github: [infobarbosa](https://github.com/infobarbosa)
 
 O objetivo desse laboratório é oferecer ao aluno ambiente onde de familiarização com o modelo de armazenamento de wide-column utilizando **Cassandra**.
 
+---
+
 ## Cassandra
 
 [Cassandra](https://cassandra.apache.org/_/index.html) é um banco de dados distribuído altamente escalável com modelo de armazenamento wide-column. <br>
 O modelo descentralizado do Cassandra fornece escalabilidade massiva e alta disponibilidade sem ponto único de falha, mesmo nos piores cenários.
 
+---
+
+## Ambiente 
+Este laborarório pode ser executado em qualquer estação de trabalho com docker disponível.<br>
+Recomendo, porém, a execução em Linux.<br>
+Caso você não tenha um à sua disposição, utilize o serviço **AWS Cloud9**. As instruções podem ser encontradas [aqui](https://github.com/infobarbosa/data-engineering-cloud9).
+
+---
+
 # Laboratório
 
 Este laboratório é dividido nas seguintes sessões que devem ser seguidas em ordem:
-1. [Cloud9 Environment](./01-Cloud9-Environment)
-2. [Cassandra Start](./02-Cassandra-Start)
-3. [cqlsh](./03-cqlsh)
-4. [Keyspaces](./04-Keyspaces)
-5. [Tables](./05-Tables)
-6. [Datafiles](./06-Datafiles)
-7. [Compaction](./07-Compaction)
-8. [Cassandra Driver](./08-Cassandra-Driver)
-9. [Cassandra Cluster](./09-Cluster)
-
-## Ambiente
-Este laborarório pode ser executado em qualquer estação de trabalho.<br>
-Recomendo, porém, a execução em sistema operacional Linux ou Mac.<br>
-Caso você não tenha um à sua disposição, recomendo o uso do AWS Cloud9. Siga essas [instruções](./01-Cloud9-Environment/README.md).
+1. [Cassandra Start](./01-Cassandra-Start)
+2. [cqlsh](./02-cqlsh)
+3. [Keyspaces](./03-Keyspaces)
+4. [Tables](./04-Tables)
+5. [Datafiles](./05-Datafiles)
+6. [Cluster](./06-Cluster)
+7. [Cassandra Driver](./08-Cassandra-Driver)
 
 
