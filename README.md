@@ -31,6 +31,6 @@ Este laboratório é dividido nas seguintes sessões que devem ser seguidas em o
 4. [Tables](./04-Tables)
 5. [Datafiles](./05-Datafiles)
 6. [Cluster](./06-Cluster)
-7. [Cassandra Driver](./08-Cassandra-Driver)
+7. [Cassandra Driver](./07-Cassandra-Driver)
 
 
