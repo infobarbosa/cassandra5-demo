@@ -24,9 +24,9 @@ services:
       timeout: 10s
       retries: 5
 
-  cassandra-init:
+  cassandra-init-infobarbank:
     image: infobarbosa/infobarbank-cassandra-schema:latest
-    container_name: cassandra-init
+    container_name: cassandra-init-infobarbank
     environment:
       - CASSANDRA_CONTACT_POINTS=cassandra-database
       - CASSANDRA_REPLICATION_FACTOR=1
@@ -37,6 +37,21 @@ services:
       - common_net
     restart:
       on-failure
+
+  cassandra-init-ecommerce:
+    image: infobarbosa/cassandra-schema-ecommerce:latest
+    container_name: cassandra-init-ecommerce
+    environment:
+      - CASSANDRA_CONTACT_POINTS=cassandra-database
+      - CASSANDRA_REPLICATION_FACTOR=1
+    depends_on:
+      cassandra-database:
+        condition: service_healthy
+    networks:
+      - common_net
+    restart:
+      on-failure
+
 networks:
   common_net:
     driver: bridge
